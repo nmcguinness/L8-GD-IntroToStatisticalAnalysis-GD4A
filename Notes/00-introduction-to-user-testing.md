@@ -20,7 +20,7 @@ The cost of fixing problems escalates dramatically as development progresses. An
 
 Professional studios build testing into every phase of development, from early prototypes through post-launch support. The cycle is straightforward:
 
-**Feedback → Fix → Retest → Polished Experience**
+**Feedback -> Fix -> Retest -> Polished Experience**
 
 This iterative approach means your game improves continuously rather than relying on a single late-stage testing push.
 
@@ -365,10 +365,10 @@ Link each task to the specific feedback or data that motivated it. This traceabi
 
 One round of testing rarely catches everything. Plan for multiple iterations:
 
-1. **Test** → Identify issues
-2. **Fix** → Implement changes
-3. **Retest** → Verify issues are resolved, check for new issues
-4. **Repeat** → Continue until quality targets are met
+1. **Test** -> Identify issues
+2. **Fix** -> Implement changes
+3. **Retest** -> Verify issues are resolved, check for new issues
+4. **Repeat** -> Continue until quality targets are met
 
 Each iteration should focus on progressively finer details. Early testing catches major structural problems; later testing polishes nuances.
 

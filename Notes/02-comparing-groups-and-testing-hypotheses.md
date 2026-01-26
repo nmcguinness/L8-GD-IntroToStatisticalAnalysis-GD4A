@@ -294,10 +294,10 @@ WHAT ARE YOU TRYING TO DO?
 
 ├── Compare groups on a NUMERICAL outcome
 │   ├── 2 groups
-│   │   ├── Same people measured twice → Paired t-test (or Wilcoxon)
-│   │   └── Different people → Independent t-test (or Mann-Whitney)
+│   │   ├── Same people measured twice -> Paired t-test (or Wilcoxon)
+│   │   └── Different people -> Independent t-test (or Mann-Whitney)
 │   └── 3+ groups
-│       └── Different people → ANOVA (or Kruskal-Wallis)
+│       └── Different people -> ANOVA (or Kruskal-Wallis)
 │
 ├── Test relationship between CATEGORICAL variables
 │   └── Chi-square test
