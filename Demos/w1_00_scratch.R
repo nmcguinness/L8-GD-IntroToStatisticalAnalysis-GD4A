@@ -6,6 +6,15 @@
 #' @seealso https://www.w3schools.com/r/default.asp
 #' @seealso https://r4ds.hadley.nz/
 
+# Dont forget to set your working directory to the project root folder! Otherwise, file paths may not work. Do this by selecting Session > Set Working Directory > To Project Directory in RStudio.
+
+# Clear workspace and console
+rm(list = ls(all.names = TRUE))
+
+ # Clear console
+cat("\014")
+
+
 # ---------------------------------------------
 # Week 1: Quick CSV read + first inspection
 # ---------------------------------------------
