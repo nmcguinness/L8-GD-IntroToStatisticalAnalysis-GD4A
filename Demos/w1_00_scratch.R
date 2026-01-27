@@ -14,7 +14,6 @@ rm(list = ls(all.names = TRUE))
  # Clear console
 cat("\014")
 
-
 # ---------------------------------------------
 # Week 1: Quick CSV read + first inspection
 # ---------------------------------------------
@@ -74,7 +73,7 @@ hist(
 )
 
 # Tip: Stripcharts show individual points and are nice for small datasets.
-# stripchart(survey_data$navigation_1to7, method = "jitter", main = "Navigation rating (1–7)")
+stripchart(survey_data$navigation_1to7, method = "jitter", main = "Navigation rating (1–7)")
 
 # ---------------------------------------------
 # Using an inbuilt dataset for plotting practice (chickwts)
@@ -134,6 +133,7 @@ boxplot(
 
 # Add a light horizontal grid for easier reading (base R helper)
 grid(nx = NA, ny = NULL, lty = 3, col = "gray85")
+
 
 
 
