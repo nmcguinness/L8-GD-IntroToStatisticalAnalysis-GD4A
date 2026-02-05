@@ -1,4 +1,4 @@
-#' @title w2_01_tidy_summarise_compare.R
+#' @title demo_4_tidy_summarise_compare.R
 #' @description Reshaping user-test data to tidy (long) format, computing descriptive statistics, and comparing groups (Build A vs Build B; experience bands).
 #' @author NMCG
 #' @bugs None

@@ -1,4 +1,4 @@
-#' @title w3_01_visualise_report_outputs.R
+#' @title demo_5_visualise_report_outputs.R
 #' @description Creating clear ggplot2 visualisations for user-test data and exporting plots/tables for use in a Quarto report (QMD).
 #' @author NMCG
 #' @bugs None
