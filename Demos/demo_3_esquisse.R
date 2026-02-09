@@ -32,14 +32,20 @@ tibble(chickwts)
 
 # Launch the esquisse UI with chickwts
 
-esquisse::esquisser(chickwts, viewer="browser")
+# esquisse::esquisser(chickwts, viewer="browser")
 
 # Example ggplot2 code for boxplot visualization --------------------------
 
 # Below is a sample ggplot2 visualization of chick weights by feed type
 
-# ggplot(chickwts) +
-#   aes(x = "", y = weight) +                # No x-axis grouping; y-axis is weight
-#   geom_boxplot(fill = "#B22222") +         # Create a red boxplot
-#   theme_minimal() +                        # Use a clean, minimal theme
-#   facet_wrap(vars(feed))                   # Create a boxplot for each feed type
+chickwts %>%
+  filter(weight >= 108L & weight <= 348L) %>%
+  ggplot() +
+  aes(x = feed, y = weight, fill = feed) +
+  geom_violin(adjust = 0.2) +
+  scale_fill_hue(direction = 1) +
+  labs(fill = "Feed Types") +
+  coord_flip() +
+  theme_minimal() +
+  ylim(50, 450)
+

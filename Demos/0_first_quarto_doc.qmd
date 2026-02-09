@@ -1,0 +1,22 @@
+---
+title: "3DGD - Lab Report"
+subtitle: "Data analysis for the game, XXXX, for group, YYYY"
+author: ["Jane Smith", "B", "C", "D"]
+format: html
+toc: true
+---
+
+# Overview
+
+```{r}
+#| label: plot_completion_times
+#| echo: false
+
+data <- c(12,67,23,56,76,3,32,2,54,56,6,68,34,23,12)
+
+plot(data)
+
+
+```
+
+
