@@ -1,4 +1,4 @@
-# Practical Analysis Tools & Lab Report Structure (Beginner + R)
+# Practical Analysis Tools & Lab Report Structure 
 
 These notes show **what to do** with gameplay testing data and **how to write it up**.
 

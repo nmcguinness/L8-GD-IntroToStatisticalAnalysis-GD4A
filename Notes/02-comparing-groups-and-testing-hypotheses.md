@@ -1,4 +1,4 @@
-# Comparing Two Groups & Testing Hypotheses (Beginner Edition)
+# Comparing Two Groups & Testing Hypotheses 
 
 These notes help you **compare two versions of a game (Build A vs Build B)** or **two player groups** and write a clear lab report.
 

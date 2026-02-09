@@ -1,4 +1,4 @@
-# Overview
+# Cleaning data in R
 
 When you “clean data” in R, you are usually doing four things:
 
