@@ -1,424 +1,435 @@
-# Comparing Groups and Testing Hypotheses
+# Comparing Two Groups & Testing Hypotheses (Beginner Edition)
 
-## Introduction
+These notes help you **compare two versions of a game (Build A vs Build B)** or **two player groups** and write a clear lab report.
 
-In the previous module, you learned to describe and summarise your playtest data. But game development decisions often require answering comparative questions:
+**Your goal at this stage is not to become a statistician.** Your goal is to:
+- ask a focused question,
+- compare groups using sensible summaries,
+- quantify uncertainty with a confidence interval,
+- write a short, honest interpretation,
+- make an actionable recommendation for the next iteration.
 
-- Did players who completed the tutorial rate the game higher than those who skipped it?
-- Is there a relationship between playtime and satisfaction?
-- Does the new control scheme perform better than the original?
+## What “comparing groups” means in gameplay testing
 
-This module introduces **inferential statistics** — techniques that help you determine whether patterns in your data reflect real effects or are just random variation.
+A comparison is usually one of these:
 
----
+| Outcome type | Typical gameplay metric | What you compare |
+| :- | :- | :- |
+| Numeric | completion time, deaths, score, damage taken | average (mean/median) + spread |
+| Binary | completed yes/no, used tutorial yes/no | completion rate (percentage) |
+| Ordinal (Likert) | “fun” 1–5, “frustration” 1–7 | treat carefully (see policy box) |
 
-## 1. The Logic of Statistical Testing
+### Using Likert Scale
+For lab reports, if the scale is **5+ points** and the distribution is not extreme, you may:
+- treat Likert as numeric **for summaries and plots**, and
+- compare group averages cautiously.
 
-### 1.1 Why We Need Statistical Tests
+Always include a sentence like:
+> “This is a rating scale (ordinal), so we interpret differences as indicative rather than exact.”
 
-Imagine you're comparing two versions of your combat system:
-- Version A: Mean satisfaction = 7.2 (n=50)
-- Version B: Mean satisfaction = 7.5 (n=50)
+## Hypotheses in plain English
 
-Version B scores higher, but is this difference **meaningful** or just chance? If you tested 50 different players tomorrow, would Version B still win?
+A hypothesis keeps your analysis focused.
 
-Statistical tests help answer: "Given the variation in my data, how confident can I be that this difference is real?"
+- **H0 (null):** “There is no difference between A and B in the metric.”  
+- **H1 (alternative):** “There is a difference (or a specific directional difference).”
 
-### 1.2 The Null Hypothesis
+Examples:
+- H0: “Average completion time is the same in Build A and Build B.”  
+- H1: “Players complete the level faster in Build B than in Build A.”
 
-Statistical tests work by assuming there's **no real difference** (the null hypothesis) and then calculating how likely your observed results would be under that assumption.
+Choose one metric as your headline result (e.g., completion time). You can still report secondary outcomes, but keep your story centred on one.
 
-**Null Hypothesis (H₀)**: There is no difference between groups / no relationship between variables.
+## Simplified comparison workflow 
+### Step 1 — Sanity check the data
+- Do both groups have enough rows (sessions)?
+- Are there obvious data-entry issues (impossible times, negative scores)?
+- Are you comparing like with like (same level, same task, same hardware)?
 
-**Alternative Hypothesis (H₁)**: There is a difference / there is a relationship.
+### Step 2 — Summarise each group
+Report:
+- **n** (sample size)
+- **mean** (or **median** if heavily skewed)
+- **spread** (SD or IQR)
 
-If your data would be very unlikely under the null hypothesis, you **reject** the null and conclude there probably is a real effect.
+### Step 3 — Visualise before you conclude
+Required plot for numeric outcomes:
+- **Box plot** (or histogram) by group.
 
-### 1.3 P-Values: Probability of Chance Results
+This prevents “trusting one number” and helps you notice outliers or skew.
 
-The **p-value** tells you the probability of getting results at least as extreme as yours if the null hypothesis were true.
+### Step 4 — Quantify the difference
+For numeric outcomes, compute the **difference**:
+- difference = mean(B) − mean(A) (or median difference)
 
-- p = 0.05 means there's a 5% chance of seeing these results by random variation alone
-- p = 0.01 means there's a 1% chance
-- p = 0.50 means there's a 50% chance — your results are completely consistent with random variation
+For binary outcomes:
+- difference = completion_rate(B) − completion_rate(A)
 
-**Convention**: p < 0.05 is typically considered "statistically significant" — unlikely enough to reject the null hypothesis.
+### Step 5 — Add uncertainty (confidence interval)
+At this stage, we use an intuitive method: **bootstrap confidence intervals**.
 
-**Important caveats:**
-- p < 0.05 is a convention, not a magic threshold
-- Statistical significance ≠ practical importance
-- A large sample can make tiny, meaningless differences "significant"
+## Confidence intervals (CI) for beginners
 
-### 1.4 Effect Size: Practical Significance
+A **95% confidence interval** gives a plausible range for the “true” value in the population of similar players.
 
-Effect size measures the **magnitude** of a difference, separate from statistical significance.
+Two CIs are most useful:
 
-Common effect size measures:
-- **Cohen's d** for comparing two means (0.2 = small, 0.5 = medium, 0.8 = large)
-- **Correlation coefficient (r)** for relationships (0.1 = small, 0.3 = medium, 0.5 = large)
+### A) CI for the mean (one group)
+Example reporting:
+> “Mean completion time in Build B was 92s (95% CI [85, 99]).”
 
-**Example**: 
-- Study 1: d = 0.8, p = 0.08 (large effect, not significant due to small sample)
-- Study 2: d = 0.1, p = 0.001 (tiny effect, significant due to huge sample)
+### B) CI for a mean difference (two groups)
+This is usually what you want for A vs B.
+Example reporting:
+> “Build B was faster by 12s on average (95% CI [3, 21]).”
 
-Study 1's finding might actually be more practically useful despite not reaching significance.
+### How to calculate a 95% CI using the Bootstrap method
 
-**Always report both p-value and effect size.**
+At this stage we use an intuitive method: **bootstrap confidence intervals**.
 
----
+**Idea:** pretend your sample is the population, then repeatedly “re-run the study” by resampling sessions **with replacement**.
 
-## 2. Comparing Two Groups
+#### Bootstrap CI for a mean (one group)
+1. Take the column you care about (e.g., `completion_time_s` for Build B).
+2. Create a resample of the same size **with replacement** (some sessions repeat; some are missing).
+3. Compute the statistic (e.g., the mean time).
+4. Repeat (e.g., 1,000–10,000 times).
+5. Sort the resampled statistics.
+6. The **95% CI** is the **2.5th percentile** and **97.5th percentile** of those values.
 
-### 2.1 Independent Samples t-Test
+#### Bootstrap CI for a mean difference (two groups)
+1. Split your data into Build A and Build B.
+2. Resample **within each group** (with replacement) to the original group sizes.
+3. Compute `mean(B_resample) − mean(A_resample)`.
+4. Repeat many times.
+5. Take the 2.5th and 97.5th percentiles of the resampled differences.
 
-Use when comparing the means of **two separate groups**.
+#### How many repeats?
+- **1,000** is often fine for a lab report.
+- **10,000** is better if your spreadsheet can handle it.
 
-**When to use:**
-- Comparing ratings between players who used controller vs. keyboard
-- Comparing completion times between casual vs. hardcore gamers
-- Comparing satisfaction between those who saw the tutorial vs. those who didn't
+#### When bootstrap is a good fit
+- small-ish samples (common in playtests),
+- skewed metrics (times, counts),
+- you want a clear “range” rather than a single number.
 
-**Assumptions:**
-- Data is numerical (or Likert treated as numerical)
-- Groups are independent (different people in each group)
-- Data is approximately normally distributed in each group
-- Similar variance in both groups (can be relaxed with Welch's t-test)
+### Example 1 — CI for a mean difference (completion time)
 
-**Example scenario:**
+**Question:** Did Build B reduce completion time?
 
-You want to know if players who received hints rated puzzle satisfaction differently from those who didn't.
+We test 6 players per build on the same level.
 
-| Group | n | Mean | SD |
-|-------|---|------|-----|
-| Hints | 45 | 7.8 | 1.4 |
-| No Hints | 42 | 6.9 | 1.6 |
+| Player | Build | Completion time (s) |
+| :- | :- | :- |
+| P1 | A | 120 |
+| P2 | A | 110 |
+| P3 | A | 105 |
+| P4 | A | 130 |
+| P5 | A | 115 |
+| P6 | A | 125 |
+| P7 | B | 98 |
+| P8 | B | 100 |
+| P9 | B | 95 |
+| P10 | B | 102 |
+| P11 | B | 97 |
+| P12 | B | 93 |
 
-A t-test yields: t = 2.82, p = 0.006, Cohen's d = 0.60
+**Step 1: Compute group means**
+- mean(A) = (120+110+105+130+115+125) / 6 = 705 / 6 = **117.5s**
+- mean(B) = (98+100+95+102+97+93) / 6 = 585 / 6 = **97.5s**
 
-**Interpretation**: The difference is statistically significant (p < 0.05) with a medium-to-large effect size. Players who received hints rated puzzle satisfaction meaningfully higher.
+**Step 2: Compute the observed difference**
+- difference = mean(B) − mean(A) = 97.5 − 117.5 = **−20.0s**  
+Interpretation: Build B is faster (negative means less time).
 
-### 2.2 Paired Samples t-Test
+**Step 3: Bootstrap the CI (what you do conceptually)**
+Repeat these steps many times (e.g., 1,000):
+- Resample 6 times from A **with replacement**, compute mean(A*)
+- Resample 6 times from B **with replacement**, compute mean(B*)
+- Compute diff* = mean(B*) − mean(A*)
 
-Use when comparing two measurements **from the same people**.
+After 1,000 repeats you have 1,000 diff* values.
 
-**When to use:**
-- Comparing ratings before and after a design change (same players)
-- Comparing satisfaction with Level 1 vs. Level 2 (same players rated both)
-- Pre/post training performance
+**Step 4: Take the percentile CI**
+- Sort diff*
+- CI_low = 2.5th percentile
+- CI_high = 97.5th percentile
 
-**Example scenario:**
+**Example outcome (illustrative):**
+- 95% bootstrap CI for the mean difference = **[−29.0, −11.0]** seconds
 
-Players rated enjoyment before and after you added the new soundtrack:
+**How to write this in your report**
+> “Build B reduced completion time by 20s on average (95% bootstrap CI [−29, −11]). This suggests the change likely reduced friction during the level.”
 
-| Player | Before | After |
-|--------|--------|-------|
-| 1 | 6 | 8 |
-| 2 | 7 | 7 |
-| 3 | 5 | 8 |
-| ... | ... | ... |
+### Example 2 — CI for a completion-rate difference (completed yes/no)
 
-Mean Before = 6.2, Mean After = 7.4
+**Question:** Did Build B increase completion rate?
 
-A paired t-test accounts for individual variation (some players rate everything high, some low) and tests whether the *change* is significant.
+We test 20 sessions per build:
 
-### 2.3 Mann-Whitney U Test (Non-Parametric Alternative)
+- Build A: 11 completed, 9 did not → completion rate(A) = 11/20 = **55%**
+- Build B: 15 completed, 5 did not → completion rate(B) = 15/20 = **75%**
 
-Use when your data **violates t-test assumptions** (not normally distributed, ordinal data, small samples with outliers).
+**Observed difference**
+- difference = 75% − 55% = **+20 percentage points**
 
-The Mann-Whitney U compares the **ranks** of values rather than the values themselves, making it robust to outliers and skewed distributions.
+#### Bootstrap CI for completion-rate difference (simple approach)
+Repeat many times (e.g., 5,000):
+1. Create a resample of 20 sessions from Build A’s 0/1 outcomes (with replacement), compute rate(A*)
+2. Create a resample of 20 sessions from Build B’s 0/1 outcomes (with replacement), compute rate(B*)
+3. diff* = rate(B*) − rate(A*)
 
-**When to use:**
-- Small samples (n < 30 per group)
-- Heavily skewed data
-- Ordinal data (like Likert scales, if treating conservatively)
-- When you have outliers you don't want to remove
+Then take the 2.5th and 97.5th percentiles of diff*.
+
+**Example outcome (illustrative):**
+- 95% bootstrap CI for the rate difference = **[+2%, +38%]**
+
+**How to write this in your report**
+> “Completion rate improved by 20 percentage points in Build B (95% bootstrap CI [+2%, +38%]). This is consistent with the tutorial change helping more players finish the level.”
 
-**Trade-off**: Less statistical power than t-test when assumptions are met. Use t-test if your data allows; fall back to Mann-Whitney when it doesn't.
+## Generating confidence intervals in R (using the module CSV)
 
----
+In labs and reports, we use **R** to compute confidence intervals. The dataset is usually stored in a `data/` folder.
 
-## 3. Comparing More Than Two Groups
+### The attached dataset (CSV)
 
-### 3.1 One-Way ANOVA
+Filename (expected path): `data/open_world_user_testing_survey_data.csv`
 
-Use when comparing means across **three or more groups**.
+Key columns you can use:
+- `build` : `"A"` or `"B"`
+- `task1_time_sec`, `task2_time_sec`, `task3_time_sec` : numeric times (often `NA` when not completed)
+- `task1_complete`, `task2_complete`, `task3_complete` : 0/1 completion flags
+- `deaths_total`, `bugs_reported` : counts
+- `ui_clarity_1to7`, `navigation_1to7`, `combat_fun_1to7`, `frustration_1to7`, `recommend_0to10` : ratings
 
-**When to use:**
-- Comparing satisfaction across Easy/Normal/Hard difficulty settings
-- Comparing completion times across different control schemes (A, B, C)
-- Comparing ratings across player segments (Casual, Core, Hardcore)
+### R helper functions (bootstrap 95% CI)
 
-**Why not just run multiple t-tests?**
+The functions below use **bootstrap resampling** (with replacement) to compute 95% CIs.
 
-If you compare Easy vs. Normal, Normal vs. Hard, and Easy vs. Hard separately, you inflate your chance of a false positive. With three comparisons at p = 0.05 each, your actual false positive rate rises to about 14%.
+```r
+# ----------------------------
+# Bootstrap CI helper functions
+# ----------------------------
 
-ANOVA controls this by testing all groups together.
-
-**ANOVA output:**
-- F-statistic: Ratio of variance between groups to variance within groups
-- p-value: Whether any group differs significantly from any other
-
-**Important**: A significant ANOVA tells you *something* differs but not *what*. You need **post-hoc tests** (like Tukey's HSD) to identify which specific groups differ.
-
-**Example scenario:**
-
-Rating "game feel" across three control schemes:
-
-| Scheme | n | Mean | SD |
-|--------|---|------|-----|
-| A | 40 | 6.8 | 1.5 |
-| B | 38 | 7.9 | 1.3 |
-| C | 41 | 7.1 | 1.4 |
-
-ANOVA result: F(2, 116) = 7.24, p = 0.001
-
-Post-hoc (Tukey): B > A (p = 0.001), B > C (p = 0.02), A ≈ C (p = 0.58)
-
-**Interpretation**: Scheme B is rated significantly higher than both A and C. No significant difference between A and C.
-
-### 3.2 Kruskal-Wallis Test (Non-Parametric Alternative)
-
-The non-parametric equivalent to one-way ANOVA. Use when ANOVA assumptions aren't met.
-
----
-
-## 4. Analysing Categorical Data
-
-When both your grouping variable and outcome are categorical, you need different techniques.
-
-### 4.1 Chi-Square Test of Independence
-
-Tests whether two categorical variables are related.
-
-**When to use:**
-- Is preferred difficulty related to player experience level?
-- Is platform (PC/Console) related to genre preference?
-- Is tutorial completion related to retention?
-
-**Example scenario:**
-
-You want to know if tutorial completion is related to first-week retention:
-
-|  | Retained | Churned | Total |
-|--|----------|---------|-------|
-| Completed tutorial | 78 | 22 | 100 |
-| Skipped tutorial | 45 | 55 | 100 |
-| Total | 123 | 77 | 200 |
-
-Chi-square test: χ² = 22.4, p < 0.001
-
-**Interpretation**: There's a significant relationship between tutorial completion and retention. Players who completed the tutorial were more likely to be retained.
-
-**Assumptions:**
-- Expected count in each cell should be ≥ 5
-- Observations are independent
-
-### 4.2 Interpreting Chi-Square Results
-
-A significant chi-square tells you variables are related, but not the strength or direction. Examine:
-
-- **Percentages**: 78% of tutorial completers retained vs. 45% of skippers
-- **Cramér's V**: Effect size for chi-square (0.1 = small, 0.3 = medium, 0.5 = large)
-
----
-
-## 5. Correlation: Measuring Relationships
-
-Correlation measures the strength and direction of a relationship between two numerical variables.
-
-### 5.1 Pearson Correlation (r)
-
-Measures **linear** relationships. Values range from -1 to +1:
-
-- r = +1: Perfect positive relationship (as X increases, Y increases)
-- r = 0: No linear relationship
-- r = -1: Perfect negative relationship (as X increases, Y decreases)
-
-**Interpreting strength:**
-- |r| < 0.3: Weak
-- 0.3 ≤ |r| < 0.5: Moderate  
-- |r| ≥ 0.5: Strong
-
-**Example scenario:**
-
-You measure playtime (hours) and satisfaction rating (1-10):
-
-| Playtime | Satisfaction |
-|----------|--------------|
-| 2 | 5 |
-| 5 | 7 |
-| 8 | 8 |
-| 3 | 6 |
-| 10 | 9 |
-| ... | ... |
-
-r = 0.72, p < 0.001
-
-**Interpretation**: Strong positive correlation — players who played longer reported higher satisfaction. This is statistically significant.
-
-### 5.2 Critical Warning: Correlation ≠ Causation
-
-A correlation tells you two things vary together, not that one *causes* the other.
-
-The playtime-satisfaction correlation could mean:
-- Playing longer causes greater satisfaction
-- More satisfied players choose to play longer
-- A third factor (e.g., game interest) causes both
-
-Don't conclude causation from correlation alone.
-
-### 5.3 Spearman Correlation (ρ)
-
-Non-parametric alternative using ranks instead of raw values.
-
-**Use when:**
-- Data is ordinal (like Likert scales)
-- Relationship is monotonic but not linear
-- Outliers are present
-
-### 5.4 Visualising Correlations: Scatter Plots
-
-Always visualise correlations with a scatter plot. This reveals:
-- Whether the relationship is actually linear
-- Outliers that might inflate/deflate the correlation
-- Potential subgroups with different patterns
-
-A correlation coefficient alone can be misleading — Anscombe's Quartet demonstrates four datasets with identical statistics but completely different patterns.
-
----
-
-## 6. Choosing the Right Test: Decision Framework
-
+bootstrap_ci_mean <- function(x, n_boot = 5000, conf_level = 0.95, seed = 123)
+{
+  # Returns a list with mean estimate and percentile CI.
+  # x: numeric vector (can include NA).
+  x <- x[!is.na(x)]
+  if (length(x) < 2)
+    stop("Need at least 2 non-missing values for a CI.")
+
+  set.seed(seed)
+
+  n <- length(x)
+  boot_means <- numeric(n_boot)
+
+  for (i in seq_len(n_boot))
+    boot_means[i] <- mean(sample(x, size = n, replace = TRUE))
+
+  alpha <- (1 - conf_level) / 2
+  ci <- quantile(boot_means, probs = c(alpha, 1 - alpha), names = FALSE)
+
+  list(
+    estimate = mean(x),
+    ci_low = ci[1],
+    ci_high = ci[2],
+    n = n,
+    n_boot = n_boot
+  )
+}
+
+bootstrap_ci_mean_diff <- function(x_a, x_b, n_boot = 5000, conf_level = 0.95, seed = 123)
+{
+  # Returns CI for mean(B) - mean(A).
+  x_a <- x_a[!is.na(x_a)]
+  x_b <- x_b[!is.na(x_b)]
+
+  if (length(x_a) < 2 || length(x_b) < 2)
+    stop("Need at least 2 non-missing values in each group for a CI.")
+
+  set.seed(seed)
+
+  n_a <- length(x_a)
+  n_b <- length(x_b)
+
+  boot_diffs <- numeric(n_boot)
+
+  for (i in seq_len(n_boot))
+  {
+    mean_a <- mean(sample(x_a, size = n_a, replace = TRUE))
+    mean_b <- mean(sample(x_b, size = n_b, replace = TRUE))
+    boot_diffs[i] <- mean_b - mean_a
+  }
+
+  alpha <- (1 - conf_level) / 2
+  ci <- quantile(boot_diffs, probs = c(alpha, 1 - alpha), names = FALSE)
+
+  list(
+    estimate = mean(x_b) - mean(x_a),
+    ci_low = ci[1],
+    ci_high = ci[2],
+    n_a = n_a,
+    n_b = n_b,
+    n_boot = n_boot
+  )
+}
+
+bootstrap_ci_rate_diff <- function(y_a, y_b, n_boot = 5000, conf_level = 0.95, seed = 123)
+{
+  # Returns CI for rate(B) - rate(A) where y is 0/1.
+  y_a <- y_a[!is.na(y_a)]
+  y_b <- y_b[!is.na(y_b)]
+
+  if (length(y_a) < 2 || length(y_b) < 2)
+    stop("Need at least 2 non-missing values in each group for a CI.")
+
+  if (!all(y_a %in% c(0, 1)) || !all(y_b %in% c(0, 1)))
+    stop("Rate CI expects 0/1 data (binary).")
+
+  set.seed(seed)
+
+  n_a <- length(y_a)
+  n_b <- length(y_b)
+
+  boot_diffs <- numeric(n_boot)
+
+  for (i in seq_len(n_boot))
+  {
+    rate_a <- mean(sample(y_a, size = n_a, replace = TRUE))
+    rate_b <- mean(sample(y_b, size = n_b, replace = TRUE))
+    boot_diffs[i] <- rate_b - rate_a
+  }
+
+  alpha <- (1 - conf_level) / 2
+  ci <- quantile(boot_diffs, probs = c(alpha, 1 - alpha), names = FALSE)
+
+  list(
+    estimate = mean(y_b) - mean(y_a),
+    ci_low = ci[1],
+    ci_high = ci[2],
+    n_a = n_a,
+    n_b = n_b,
+    n_boot = n_boot
+  )
+}
 ```
-WHAT ARE YOU TRYING TO DO?
 
-├── Compare groups on a NUMERICAL outcome
-│   ├── 2 groups
-│   │   ├── Same people measured twice -> Paired t-test (or Wilcoxon)
-│   │   └── Different people -> Independent t-test (or Mann-Whitney)
-│   └── 3+ groups
-│       └── Different people -> ANOVA (or Kruskal-Wallis)
-│
-├── Test relationship between CATEGORICAL variables
-│   └── Chi-square test
-│
-└── Test relationship between NUMERICAL variables
-    └── Correlation (Pearson or Spearman)
+### Example 1 — CI for mean difference in Task 1 completion time (Build B − Build A)
+
+This example compares **Task 1 time** between builds, using only sessions where the task was completed.
+
+```r
+# ----------------------------
+# Load data
+# ----------------------------
+df <- read.csv("data/open_world_user_testing_survey_data.csv")
+
+# ----------------------------
+# Filter to completed Task 1 (time is NA if not completed)
+# ----------------------------
+a_time <- df$task1_time_sec[df$build == "A" & df$task1_complete == 1]
+b_time <- df$task1_time_sec[df$build == "B" & df$task1_complete == 1]
+
+# ----------------------------
+# Bootstrap CI for mean difference (B - A)
+# ----------------------------
+ci_time <- bootstrap_ci_mean_diff(a_time, b_time, n_boot = 5000, seed = 42)
+
+print(ci_time)
+
+cat(sprintf(
+  "\nTask 1 time difference (B - A): %.1f sec, 95%% CI [%.1f, %.1f]\n",
+  ci_time$estimate, ci_time$ci_low, ci_time$ci_high
+))
 ```
 
-### Parametric vs. Non-Parametric
+**How you would write this in your report**
+- Report the observed mean difference (B − A).
+- Report the 95% CI.
+- Interpret what it means for gameplay (e.g., reduced friction, improved guidance, etc.).
 
-| Parametric | Non-Parametric | Use Non-Parametric When |
-|------------|----------------|------------------------|
-| Independent t-test | Mann-Whitney U | Small n, skewed, ordinal |
-| Paired t-test | Wilcoxon Signed-Rank | Small n, skewed, ordinal |
-| One-way ANOVA | Kruskal-Wallis | Small n, skewed, ordinal |
-| Pearson r | Spearman ρ | Ordinal, non-linear, outliers |
+### Example 2 — CI for completion-rate difference in Task 2 (Build B − Build A)
 
----
+This example compares **Task 2 completion rate** (0/1) between builds.
 
-## 7. Practical Considerations for Playtest Analysis
+```r
+df <- read.csv("data/open_world_user_testing_survey_data.csv")
 
-### 7.1 Multiple Comparisons Problem
+a_comp <- df$task2_complete[df$build == "A"]
+b_comp <- df$task2_complete[df$build == "B"]
 
-If you test 20 different hypotheses at p = 0.05, you'd expect 1 false positive by chance alone.
+ci_rate <- bootstrap_ci_rate_diff(a_comp, b_comp, n_boot = 5000, seed = 42)
 
-**Solutions:**
-- Pre-register your key hypotheses — decide what you're testing before looking at data
-- Apply Bonferroni correction: divide α by number of tests (0.05 / 20 = 0.0025)
-- Distinguish confirmatory (hypothesis-testing) from exploratory analysis
+print(ci_rate)
 
-### 7.2 Practical vs. Statistical Significance
+cat(sprintf(
+  "\nTask 2 completion-rate difference (B - A): %.1f%%, 95%% CI [%.1f%%, %.1f%%]\n",
+  100 * ci_rate$estimate, 100 * ci_rate$ci_low, 100 * ci_rate$ci_high
+))
+```
 
-A tiny improvement that's statistically significant might not be worth implementing. Consider:
-- Development cost to implement
-- Magnitude of the effect (effect size)
-- What players actually notice
+### Optional: CI for a mean in a single build (Build B only)
 
-A 0.2-point improvement on a 10-point scale might be significant with n=1000 but completely imperceptible to players.
+```r
+df <- read.csv("data/open_world_user_testing_survey_data.csv")
 
-### 7.3 Sample Size and Statistical Power
+b_time <- df$task1_time_sec[df$build == "B" & df$task1_complete == 1]
+ci_b_mean <- bootstrap_ci_mean(b_time, n_boot = 5000, seed = 42)
 
-**Power** is the probability of detecting a real effect if it exists.
+cat(sprintf(
+  "Build B mean Task 1 time: %.1f sec, 95%% CI [%.1f, %.1f] (n=%d)\n",
+  ci_b_mean$estimate, ci_b_mean$ci_low, ci_b_mean$ci_high, ci_b_mean$n
+))
+```
 
-With small samples, you might miss real effects (Type II error / false negative).
+> For your lab report, you only need **at least one** CI, but you may include more if they support your conclusions.
 
-Rule of thumb for 80% power to detect medium effects:
-- t-test: ~64 per group
-- Correlation: ~85 total
-- Chi-square: depends on expected proportions
+## What is “significance”?
 
-For playtesting, you often work with smaller samples. Acknowledge this limitation — a non-significant result might mean "no effect" or "not enough data to detect an effect."
+For this module, use this rule of thumb:
+- If your **95% CI for the difference** does **not** include 0, the evidence for a real difference is stronger.
+- If it **does** include 0, your data is consistent with “no difference” (or you need more data).
 
-### 7.4 Reporting Your Results
+You still report the observed difference — you just phrase your confidence honestly.
 
-When reporting statistical findings, include:
+## Reporting your results
 
-1. **Descriptive statistics**: Means, SDs, sample sizes per group
-2. **Test statistic**: t, F, χ², r value
-3. **Degrees of freedom**: (where applicable)
-4. **P-value**: Exact value preferred (p = 0.023, not just p < 0.05)
-5. **Effect size**: Cohen's d, Cramér's V, r
-6. **Practical interpretation**: What this means for design decisions
+### The 4-sentence results paragraph template
+We will use this structure in our lab report:
 
-**Example**: "Players who received hints (M = 7.8, SD = 1.4) rated puzzle satisfaction significantly higher than those without hints (M = 6.9, SD = 1.6), t(85) = 2.82, p = .006, d = 0.60. This medium-to-large effect suggests hints meaningfully improve the puzzle experience."
+1) **Metric + direction**  
+> “Players completed the level faster in Build B than Build A.”
 
----
+2) **Magnitude**  
+> “The mean difference was −12 seconds (B − A).”
 
-## 8. Practical Exercise
+3) **Uncertainty**  
+> “A 95% bootstrap CI for the mean difference was [−21, −3].”
 
-Your playtest collected satisfaction ratings (1-10) from three player segments:
+4) **Interpretation in game terms**  
+> “This suggests Build B reduced friction during the puzzle sequence, likely due to the new waypoint hinting.”
 
-**Casual players (n = 35)**: 6, 7, 5, 8, 6, 7, 7, 5, 6, 8, 7, 6, 5, 7, 6, 8, 7, 6, 7, 5, 6, 7, 8, 6, 7, 5, 6, 7, 7, 6, 8, 7, 6, 5, 7
+### Add a recommendation
+End your Results/Discussion with a design action:
+> “We recommend keeping the waypoint hinting and next testing whether it also reduces early drop-off in the first 3 minutes.”
 
-**Core players (n = 30)**: 7, 8, 8, 9, 7, 8, 7, 8, 9, 8, 7, 8, 8, 9, 7, 8, 9, 8, 7, 8, 8, 9, 7, 8, 8, 7, 9, 8, 8, 7
+## Common pitfalls (short, important)
 
-**Hardcore players (n = 28)**: 5, 6, 4, 5, 6, 7, 5, 4, 6, 5, 6, 5, 4, 6, 5, 7, 5, 6, 4, 5, 6, 5, 4, 6, 5, 5, 6, 4
+- **Too many outcomes:** pick one primary metric.
+- **Comparing different tasks:** make sure A and B are truly comparable.
+- **Tiny samples:** avoid strong claims; be honest about uncertainty.
+- **Outliers:** investigate whether they are real behaviour or data errors.
+- **Causation language:** comparisons show differences, not guaranteed causes.
 
-**Tasks:**
+## Minimum lab report requirements from these notes
 
-1. Calculate the mean and SD for each group
-2. Which statistical test is appropriate to compare these groups?
-3. Based on the means, which groups appear to differ?
-4. If you found significant differences, what might this suggest about your game's design?
-5. What additional data might help explain these patterns?
-
----
-
-## Summary
-
-You can now:
-
-1. **Understand hypothesis testing logic** — null hypotheses, p-values, and their limitations
-2. **Compare two groups** — using t-tests (paired and independent) and non-parametric alternatives
-3. **Compare multiple groups** — using ANOVA and post-hoc tests
-4. **Analyse categorical relationships** — using chi-square tests
-5. **Measure correlations** — using Pearson and Spearman coefficients
-6. **Choose appropriate tests** — based on your data type and question
-7. **Interpret and report results** — with proper attention to effect sizes
-
-The final module covers practical implementation: using spreadsheet tools to perform these analyses and presenting your findings effectively.
-
----
-
-## Key Terms Glossary
-
-| Term | Definition |
-|------|------------|
-| Alternative Hypothesis (H₁) | The hypothesis that there is an effect or difference |
-| ANOVA | Analysis of variance — compares means across 3+ groups |
-| Chi-Square Test | Tests association between categorical variables |
-| Cohen's d | Effect size measure for mean differences |
-| Correlation | Measure of linear relationship between two variables |
-| Degrees of Freedom | Parameters that can vary in a statistical calculation |
-| Effect Size | Measure of the magnitude of an effect |
-| Null Hypothesis (H₀) | The hypothesis of no effect or no difference |
-| Parametric Test | Assumes specific distribution (usually normal) |
-| Non-Parametric Test | Makes no distribution assumptions |
-| p-value | Probability of results under the null hypothesis |
-| Post-hoc Test | Follow-up test after ANOVA to identify specific differences |
-| Power | Probability of detecting a real effect |
-| Statistical Significance | Result unlikely to occur by chance (typically p < 0.05) |
-| t-test | Compares means between two groups |
-| Type I Error | False positive — finding an effect that isn't real |
-| Type II Error | False negative — missing a real effect |
+| Item | What you must include |
+| :- | :- |
+| Hypothesis | H0/H1 in plain English |
+| Summary table | n, mean/median, spread for each group |
+| One comparison | mean/median difference (or rate difference) |
+| One uncertainty statement | a 95% CI for the mean or difference |
+| One plot | group comparison plot (box plot or similar) |
+| Interpretation | 2–4 sentences in gameplay terms |
+| Recommendation | one concrete design/next test action |

@@ -32,7 +32,7 @@ tibble(chickwts)
 
 # Launch the esquisse UI with chickwts
 
-esquisse::esquisser(chickwts)
+esquisse::esquisser(chickwts, viewer="browser")
 
 # Example ggplot2 code for boxplot visualization --------------------------
 
