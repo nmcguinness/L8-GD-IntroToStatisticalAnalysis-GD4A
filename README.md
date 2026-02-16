@@ -18,6 +18,14 @@ This repository contains samples code used to learn core R (and useful packages 
 | 07    | Survey Design                           | Writing playtesting survey questions to maximise insight and support statistical analysis in the lab report.           | [07-survey-design](/Notes/07-survey-design.md) |        
 
 
+## Lab Report
+
+| File Name | Description | Link |
+| :- | :- | :- |
+| Lab Report Template | Student template with guidance for completing the user testing lab report | [Lab_Report_Template.md](/Lab_Report_Template.md) |
+| Lab Report Sample | Complete example report demonstrating all requirements using base R | [Lab_Report_Sample.qmd](/Lab_Report_Sample.qmd) |
+| Word Count Helper | R script to count words in rendered HTML reports (excludes code/tables) | [word_count_helper.R](/word_count_helper.R) |
+
 ## Useful 
 - [Markdown](https://docs.github.com/en/enterprise-cloud@latest/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax) in GitHub
 - Add emojis with [gitmoji](https://gitmoji.dev/) to your Git commits to improve readability

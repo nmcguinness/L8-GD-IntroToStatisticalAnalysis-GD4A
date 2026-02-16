@@ -1,0 +1,604 @@
+---
+title: "2025-26 - 3DGD - User Testing Lab Report"
+subtitle: "OtherWorld: Evaluating Build B Tutorial Improvements"
+author: "Team XYZ: Jane Smith, Alex Smith, Bea Smith"
+date: "`r format(Sys.Date(), '%b %d %Y')`"
+keywords: ["collaborative", "project", "survey", "analysis", "game"]
+format:
+  html:
+    toc: true
+    toc-depth: 3
+    number-sections: true
+    code-fold: true
+    highlight-style: github
+    theme: cosmo
+    fig-width: 6
+    fig-height: 4
+  pdf:
+    toc: true
+    toc-depth: 3
+    number-sections: true
+    fig-width: 6
+    fig-height: 4
+  # docx:
+  #   toc: true
+  #   toc-depth: 2
+  #   number-sections: true
+  #   echo: false
+  #   highlight-style: github
+  #   fig-width: 6
+  #   fig-height: 4
+execute:
+  echo: false
+  warning: false
+  message: false
+---
+
+## Executive Summary
+
+We conducted user testing on two versions of OuterWild's tutorial system across 80 participants. Build B, featuring an improved waypoint and UI hint system, significantly outperformed the original Build A. Task 1 completion rates increased from 23% to 58% (95% CI: [35%, 72%]), and UI clarity ratings improved by 2.4 points on a 7-point scale. Notably, Build B disproportionately benefited beginner players (+69% completion gain) compared to experienced players (+39% gain), demonstrating that the new tutorial effectively "flattens the skill curve." We recommend implementing Build B's improvements for the final release, with particular attention to console (Playstation 5) platform optimization.
+
+---
+
+## Introduction
+
+### Game Context & Background
+
+OuterWild is an open-world action RPG currently in beta testing. The game features exploration, combat, and quest-based progression on PC and Console platforms. Our development team identified navigation and tutorial clarity as critical pain points during alpha testing, particularly for players new to the open-world genre.
+
+### Scope of Testing
+
+This study compares two game builds tested across two sessions:
+
+- **Build A** (Week 7): Original tutorial with minimal waypoint guidance
+- **Build B** (Week 11): Revised tutorial with enhanced waypoints, contextual UI hints, and improved objective markers
+
+Testing focused on three core tasks:
+
+1. **Navigation Task**: Reach a marked shrine using the map and waypoint system
+2. **Quest Task**: Locate an NPC and complete a quest objective
+3. **Combat Task**: Defeat or escape a bandit camp encounter
+
+### Testing Objectives
+
+We sought to answer:
+
+1. Does Build B improve task completion rates compared to Build A?
+2. Does Build B reduce player frustration and improve usability ratings?
+3. Does the improved tutorial benefit all skill levels equally?
+4. What is the relationship between navigation clarity and player recommendation?
+
+### Hypotheses
+
+- **H₀:** There is no difference in Task 1 completion rates between Build A and Build B.
+- **H₁:** Build B increases Task 1 completion rates compared to Build A.
+
+---
+
+## Methodology
+
+### Test Design & Approach
+
+We conducted moderated playtesting sessions using a think-aloud protocol. Participants played one assigned build (between-subjects design) while observers recorded completion metrics, deaths, and bugs. Sessions were conducted in-person in our module lab (P1119).
+
+**Testing Sessions:**
+
+- Week 7 (N=40): Build A baseline testing
+- Week 11 (N=40): Build B validation testing
+
+### Participants
+
+**Recruitment:** Participants were recruited from our degree programme. No prior experience with OuterWild was required. 
+
+**Sample Composition:**
+
+- Total N = 80 (40 per build)
+- Experience distribution: 26 beginners, 28 intermediate, 26 experienced
+- Platform: 65% PC, 35% Console
+
+**Ethics:** All participants provided informed consent and were informed they could withdraw at any time. No personally identifying information was collected.
+
+### Materials & Tools
+
+**Game Build:** OuterWild Beta v0.7.2 (Build A) and v0.8.1 (Build B)  
+**Platforms:** Windows 11 PC (RTX 5060) and PlayStation 5  
+**Recording:** OBS Studio for gameplay capture, Google Forms for post-session survey  
+
+### Procedure
+
+Each session followed this protocol:
+
+1. Welcome and consent form (5 min)
+2. Brief control tutorial (5 min)
+3. Gameplay session with three sequential tasks (30-40 min)
+4. Post-session survey including ratings and open feedback (5 min)
+5. Brief debrief interview (5 min)
+
+Facilitators observed but did not intervene during gameplay except to clarify instructions if requested.
+
+---
+
+## Data Analysis
+
+```{r setup}
+# Load data
+df <- read.csv("../data/open_world_user_testing_survey_data.csv", stringsAsFactors = FALSE)
+
+# Display initial structure
+cat("Initial dataset dimensions:", nrow(df), "rows,", ncol(df), "columns\n")
+```
+
+### Data Cleaning
+
+We encountered several data quality issues requiring cleaning before analysis.
+
+```{r cleaning}
+# Standardize categorical variables
+df$build <- tolower(trimws(df$build))
+df$build[df$build %in% c("n/a", "", " ")] <- NA
+df$build[df$build == "a"] <- "A"
+df$build[df$build == "b"] <- "B"
+
+df$experience_band <- tolower(trimws(df$experience_band))
+df$experience_band[df$experience_band %in% c("expert", "experienced")] <- "experienced"
+df$experience_band[df$experience_band %in% c("inter", "intermediate")] <- "intermediate"
+df$experience_band[df$experience_band %in% c("", "n/a", " ")] <- NA
+
+df$platform <- trimws(df$platform)
+df$platform[df$platform %in% c("PlayStation", "PS5", "console", "CONSOLE", "Console ")] <- "Console"
+df$platform[df$platform %in% c("pc", "PC ", "Pc", "computer")] <- "PC"
+
+# Convert numeric columns and fix precision
+numeric_cols <- c("session_minutes", "task1_time_sec", "task2_time_sec", 
+                  "task3_time_sec", "deaths_total", "bugs_reported",
+                  "ui_clarity_1to7", "navigation_1to7", "combat_fun_1to7",
+                  "frustration_1to7", "recommend_0to10")
+
+for (col in numeric_cols) {
+  df[[col]] <- as.numeric(df[[col]])
+}
+
+# Fix precision: minutes to 1 decimal, seconds to whole numbers
+df$session_minutes <- round(df$session_minutes, 1)
+df$task1_time_sec <- round(df$task1_time_sec, 0)
+df$task2_time_sec <- round(df$task2_time_sec, 0)
+df$task3_time_sec <- round(df$task3_time_sec, 0)
+
+# Handle out-of-range values
+df$ui_clarity_1to7[df$ui_clarity_1to7 < 1 | df$ui_clarity_1to7 > 7] <- NA
+df$navigation_1to7[df$navigation_1to7 < 1 | df$navigation_1to7 > 7] <- NA
+df$combat_fun_1to7[df$combat_fun_1to7 < 1 | df$combat_fun_1to7 > 7] <- NA
+df$frustration_1to7[df$frustration_1to7 < 1 | df$frustration_1to7 > 7] <- NA
+df$recommend_0to10[df$recommend_0to10 < 0 | df$recommend_0to10 > 10] <- NA
+
+# Handle negative values (data entry errors)
+df$deaths_total[df$deaths_total < 0] <- NA
+df$bugs_reported[df$bugs_reported < 0] <- NA
+df$session_minutes[df$session_minutes < 0] <- NA
+
+# Remove extreme outliers (likely data entry errors)
+df$deaths_total[df$deaths_total > 20] <- NA
+df$bugs_reported[df$bugs_reported > 15] <- NA
+df$session_minutes[df$session_minutes > 100] <- NA
+df$task1_time_sec[df$task1_time_sec > 500] <- NA
+
+cat("After cleaning:", nrow(df), "rows with", sum(complete.cases(df)), "complete cases\n")
+```
+
+**Exclusions:** We excluded 3 participants with incomplete demographic data and corrected data entry errors (negative values, extreme outliers). Final sample: Build A (n=40), Build B (n=40).
+
+### Metrics Chosen
+
+We focused on four primary metrics aligned with our testing objectives:
+
+1. **Task 1 Completion Rate** (binary) — measures navigation system effectiveness
+2. **Task 1 Completion Time** (seconds) — measures efficiency among successful completions
+3. **UI Clarity Rating** (1-7 scale) — measures perceived interface usability
+4. **Player Recommendation** (0-10 scale) — measures overall satisfaction
+
+### Statistical Methods
+
+We employed:
+
+- **Descriptive statistics** (mean, median, SD, n) for all key metrics
+- **95% confidence interval** for the difference in Task 1 completion rates between builds
+- **Correlation matrix** to examine relationships among deaths, ratings, and recommendation
+- **Interaction analysis** to assess whether Build B benefits differ by experience level
+
+---
+
+## Results
+
+### Summary Statistics
+
+```{r summary-table}
+# Create summary statistics by build
+cat("\n=== Table 1: Summary of Key Metrics by Build ===\n\n")
+
+# Build simple summary table
+metrics <- data.frame(
+  Metric = c("Task 1 Completion Rate (%)", 
+             "Deaths (mean ± SD)",
+             "UI Clarity (mean ± SD)",
+             "Navigation (mean ± SD)", 
+             "Recommendation (mean ± SD)"),
+  Build_A = c(
+    sprintf("%.0f%%", mean(df$task1_complete[df$build == "A"], na.rm = TRUE) * 100),
+    sprintf("%.1f ± %.1f", mean(df$deaths_total[df$build == "A"], na.rm = TRUE),
+                           sd(df$deaths_total[df$build == "A"], na.rm = TRUE)),
+    sprintf("%.1f ± %.1f", mean(df$ui_clarity_1to7[df$build == "A"], na.rm = TRUE),
+                           sd(df$ui_clarity_1to7[df$build == "A"], na.rm = TRUE)),
+    sprintf("%.1f ± %.1f", mean(df$navigation_1to7[df$build == "A"], na.rm = TRUE),
+                           sd(df$navigation_1to7[df$build == "A"], na.rm = TRUE)),
+    sprintf("%.1f ± %.1f", mean(df$recommend_0to10[df$build == "A"], na.rm = TRUE),
+                           sd(df$recommend_0to10[df$build == "A"], na.rm = TRUE))
+  ),
+  Build_B = c(
+    sprintf("%.0f%%", mean(df$task1_complete[df$build == "B"], na.rm = TRUE) * 100),
+    sprintf("%.1f ± %.1f", mean(df$deaths_total[df$build == "B"], na.rm = TRUE),
+                           sd(df$deaths_total[df$build == "B"], na.rm = TRUE)),
+    sprintf("%.1f ± %.1f", mean(df$ui_clarity_1to7[df$build == "B"], na.rm = TRUE),
+                           sd(df$ui_clarity_1to7[df$build == "B"], na.rm = TRUE)),
+    sprintf("%.1f ± %.1f", mean(df$navigation_1to7[df$build == "B"], na.rm = TRUE),
+                           sd(df$navigation_1to7[df$build == "B"], na.rm = TRUE)),
+    sprintf("%.1f ± %.1f", mean(df$recommend_0to10[df$build == "B"], na.rm = TRUE),
+                           sd(df$recommend_0to10[df$build == "B"], na.rm = TRUE))
+  ),
+  n = c(
+    sprintf("A=%d, B=%d", 
+            sum(!is.na(df$task1_complete[df$build == "A"])),
+            sum(!is.na(df$task1_complete[df$build == "B"]))),
+    sprintf("A=%d, B=%d",
+            sum(!is.na(df$deaths_total[df$build == "A"])),
+            sum(!is.na(df$deaths_total[df$build == "B"]))),
+    sprintf("A=%d, B=%d",
+            sum(!is.na(df$ui_clarity_1to7[df$build == "A"])),
+            sum(!is.na(df$ui_clarity_1to7[df$build == "B"]))),
+    sprintf("A=%d, B=%d",
+            sum(!is.na(df$navigation_1to7[df$build == "A"])),
+            sum(!is.na(df$navigation_1to7[df$build == "B"]))),
+    sprintf("A=%d, B=%d",
+            sum(!is.na(df$recommend_0to10[df$build == "A"])),
+            sum(!is.na(df$recommend_0to10[df$build == "B"])))
+  )
+)
+
+# Print table
+print(metrics, row.names = FALSE)
+```
+
+**Table 1** shows clear differences between builds. Build B participants had lower deaths (2.9 vs 4.5), higher UI clarity ratings (6.2 vs 3.8), higher navigation ratings (5.9 vs 4.1), and higher recommendation scores (7.9 vs 6.0).
+
+> Do the statistics in the table match those in the commentary above?
+
+### Confidence Interval
+
+We calculated a 95% confidence interval for the difference in Task 1 completion rates using bootstrap resampling.
+
+```{r bootstrap-ci}
+# Bootstrap function for difference in proportions
+bootstrap_prop_diff <- function(x1, x2, n_boot = 5000, seed = 42) {
+  set.seed(seed)
+  
+  prop1 <- mean(x1, na.rm = TRUE)
+  prop2 <- mean(x2, na.rm = TRUE)
+  diff_observed <- prop2 - prop1
+  
+  # Bootstrap
+  boot_diffs <- numeric(n_boot)
+  for (i in 1:n_boot) {
+    boot1 <- sample(x1, replace = TRUE)
+    boot2 <- sample(x2, replace = TRUE)
+    boot_diffs[i] <- mean(boot2, na.rm = TRUE) - mean(boot1, na.rm = TRUE)
+  }
+  
+  # Calculate CI
+  ci_low <- quantile(boot_diffs, 0.025)
+  ci_high <- quantile(boot_diffs, 0.975)
+  
+  list(estimate = diff_observed,
+       ci_low = ci_low,
+       ci_high = ci_high)
+}
+
+# Calculate CI for Task 1 completion
+task1_A <- df$task1_complete[df$build == "A"]
+task1_B <- df$task1_complete[df$build == "B"]
+
+ci_result <- bootstrap_prop_diff(task1_A, task1_B, n_boot = 5000, seed = 42)
+
+cat(sprintf("\n=== 95%% CI for Task 1 Completion Rate Difference ===\n"))
+cat(sprintf("Build B increased completion by %.1f%% (95%% CI: [%.1f%%, %.1f%%])\n",
+            ci_result$estimate * 100,
+            ci_result$ci_low * 100,
+            ci_result$ci_high * 100))
+
+ci_result_low_perc <- round(ci_result$ci_low * 100)
+ci_result_high_perc <- round(ci_result$ci_high * 100)
+```
+
+**Build B increased Task 1 completion by approximately 35 percentage points** (95% CI: [`r ci_result_low_perc`%, `r ci_result_high_perc`%]). Since the confidence interval excludes zero, this difference is unlikely due to chance alone. This represents a substantial improvement in navigation task success, likely attributable to the enhanced waypoint system and contextual UI hints implemented in Build B.
+
+### Key Findings by Category
+
+> Do the statistics in the match those in the commentary below?
+
+#### Navigation & Task Completion
+
+Build B dramatically improved navigation task completion. Only 23% of Build A participants completed Task 1, compared to 58% in Build B. Among those who completed the task, Build B users were also faster (154 seconds vs 172 seconds average).
+
+This improvement aligns with the higher UI clarity ratings (6.2 vs 3.8) and navigation ratings (5.9 vs 4.1) observed in Build B. Open-ended feedback from Build B participants frequently mentioned "helpful waypoints" and "clear objective markers."
+
+#### Player Frustration
+
+Build B reduced player frustration significantly. The mean frustration rating was 2.9 in Build B compared to 3.6 in Build A (on a 1-7 scale where higher = more frustrated). This aligns with the lower death counts observed in Build B (2.9 vs 4.5 average).
+
+#### Overall Satisfaction
+
+Build B received higher recommendation scores (7.9 vs 6.0 on a 0-10 scale), indicating that improved navigation directly contributes to overall player satisfaction. This suggests the tutorial improvements address a core pain point that affects the entire play experience.
+
+### Visualizations
+
+#### Figure 1: Task 1 Completion by Build
+
+```{r fig1-completion, fig.width=7, fig.height=5}
+# Completion rate by build
+completion_A <- mean(df$task1_complete[df$build == "A"], na.rm = TRUE)
+completion_B <- mean(df$task1_complete[df$build == "B"], na.rm = TRUE)
+
+barplot(c(completion_A, completion_B) * 100,
+        names.arg = c("Build A", "Build B"),
+        col = c("coral", "skyblue"),
+        main = "Task 1 Completion Rate by Build",
+        ylab = "Completion Rate (%)",
+        ylim = c(0, 100))
+```
+
+**Figure 1** shows Build B more than doubled the Task 1 completion rate (58% vs 23%). This dramatic improvement demonstrates that the revised waypoint system successfully addresses the navigation clarity issues identified in alpha testing.
+
+#### Figure 2: Distribution of Player Deaths
+
+```{r fig2-deaths, fig.width=8, fig.height=5}
+boxplot(deaths_total ~ build, data = df,
+        col = c("coral", "skyblue"),
+        main = "Player Deaths by Build",
+        xlab = "Build Version",
+        ylab = "Total Deaths")
+```
+
+**Figure 2** reveals Build B participants died less frequently (median = 2 vs 4 deaths). The boxplot also shows two outliers in each build with unusually high death counts (>8). Review of qualitative feedback suggests these outliers encountered technical issues (game-breaking bugs) or deliberately sought challenge rather than completing objectives efficiently.
+
+#### Figure 3: Task Completion by Experience Level and Build
+
+```{r fig3-frustration, fig.width=7, fig.height=5}
+# Frustration ratings by build
+boxplot(frustration_1to7 ~ build, data = df,
+        col = c("coral", "skyblue"),
+        main = "Player Frustration by Build",
+        xlab = "Build Version",
+        ylab = "Frustration Rating (1-7)",
+        ylim = c(1, 7))
+```
+
+**Figure 3** shows that Build B successfully reduced player frustration. The median frustration rating decreased from approximately 4 to 3 on the 7-point scale, with Build B showing a tighter distribution around lower frustration levels. This reduction is particularly important given the very strong negative correlation between frustration and recommendation (r = -0.87), indicating that minimizing frustration is critical for player satisfaction.
+
+### Build Comparison
+
+**What we compared:** Task 1 completion rates between Build A (original tutorial) and Build B (enhanced waypoints and UI hints).
+
+**What we found:** Build B showed a 35 percentage point increase in completion rate (23% to 58%), with a 95% confidence interval of [`r ci_result_low_perc`%, `r ci_result_high_perc`%].
+
+> Note the use of inline R code chunks to update the CI above.
+
+**Statistical significance:** The confidence interval excludes zero, indicating this difference is statistically significant and unlikely due to sampling variation alone.
+
+**Practical significance:** This represents more than doubling the completion rate. For a tutorial designed to introduce core navigation mechanics, this improvement is substantial and addresses a critical usability barrier. Given that Build B particularly helps beginners (+69%), this change effectively removes a major obstacle to player retention.
+
+### Correlation Analysis
+
+```{r correlation-matrix, fig.width=8, fig.height=7}
+# Select key numeric variables
+cor_vars <- c("deaths_total", "ui_clarity_1to7", "navigation_1to7", 
+              "combat_fun_1to7", "frustration_1to7", "recommend_0to10")
+
+# Calculate correlation matrix
+cor_data <- df[, cor_vars]
+cor_matrix <- cor(cor_data, use = "complete.obs")
+
+cat("\n=== Table 2: Correlation Matrix ===\n\n")
+print(round(cor_matrix, 2))
+
+# Create readable labels
+clean_labels <- c("Deaths", "UI Clarity", "Navigation", 
+                  "Combat Fun", "Frustration", "Recommendation")
+
+# Rename matrix rows and columns
+rownames(cor_matrix) <- clean_labels
+colnames(cor_matrix) <- clean_labels
+
+# Create color palette: green (positive) to red (negative)
+col_palette <- colorRampPalette(c("#D1495B", "white", "#3A7D44"))(100)
+
+# Set margins to accommodate labels
+par(mar = c(8, 8, 3, 2))
+
+# Create heatmap
+image(1:ncol(cor_matrix), 1:nrow(cor_matrix), t(cor_matrix),
+      col = col_palette,
+      axes = FALSE, xlab = "", ylab = "",
+      main = "Correlation Matrix",
+      zlim = c(-1, 1))
+
+# Add axes with clean labels
+axis(1, at = 1:ncol(cor_matrix), labels = colnames(cor_matrix), 
+     las = 2, cex.axis = 0.85)
+axis(2, at = 1:nrow(cor_matrix), labels = rownames(cor_matrix), 
+     las = 1, cex.axis = 0.85)
+
+# Add correlation values in white
+for (i in 1:nrow(cor_matrix)) {
+  for (j in 1:ncol(cor_matrix)) {
+    text(j, i, sprintf("%.2f", cor_matrix[i, j]), 
+         col = "white", cex = 0.85, font = 2)
+  }
+}
+
+r_frust_rec <- round(cor(df$frustration_1to7, df$recommend_0to10, use = "complete.obs"), 2)
+
+
+```
+
+**Top 3 Correlations:**
+
+> Note the use of in-line R code below for the first correlation value. 
+
+1. **Frustration vs Recommendation (r = `r r_frust_rec`)**: Very strong negative correlation indicates that player frustration is the primary predictor of willingness to recommend. Players who experienced high frustration (e.g., getting lost, dying repeatedly) were substantially less likely to recommend the game, regardless of build.
+
+2. **UI Clarity vs Recommendation (r = +0.71)**: Players who found the UI clear and helpful were much more likely to recommend the game. This validates our focus on improving tutorial clarity as a key driver of player satisfaction.
+
+3. **Deaths vs Frustration (r = +0.66)**: Significant positive correlation shows that death frequency is a major contributor to player frustration. This relationship highlights the importance of balanced difficulty.
+
+**Notable moderate correlations:**
+
+- **Deaths vs Recommendation (r = -0.53)**: Death frequency negatively impacts recommendation, likely mediated through increased frustration.
+- **UI Clarity vs Frustration (r = -0.59)**: Clear UI elements reduce frustration, confirming that usability improvements directly enhance player experience.
+- **UI Clarity vs Navigation (r = +0.52)**: Moderate positive correlation confirms that clear UI elements (waypoints, objective markers) enable better navigation.
+
+**Weak correlation of interest:**
+
+> From the table above what two variables have the weakest correlation?
+
+- **X vs Y (r = -0.08)**: X enjoyment shows essentially no correlation with overall Y. This suggests that while X is important, it is far less critical than navigation clarity and reduced frustration for overall player satisfaction during the tutorial phase.
+
+---
+
+## Discussion
+
+### Interpretation of Findings
+
+Our hypothesis that Build B would improve Task 1 completion was strongly supported. The 35 percentage point increase represents a practically significant improvement that addresses the primary usability concern identified in alpha testing. Beyond completion rates, Build B improved nearly every measured outcome: lower deaths, reduced frustration, higher UI clarity ratings, and greater likelihood to recommend.
+
+The most theoretically interesting finding is the **interaction effect between build and experience level**. Build B's enhancements disproportionately benefited beginners, closing the gap between novice and experienced players. This "skill curve flattening" effect is precisely what effective tutorial design should achieve: providing scaffolding for those who need it while remaining unobtrusive for experienced players who can navigate independently.
+
+### Key Insights
+
+1. **Tutorial improvements drive retention**: The strong correlation between UI clarity and recommendation (r = 0.71) suggests that poor early-game experience compounds into negative overall perception. Conversely, reducing early frustration through better tutorials improves overall satisfaction.
+
+2. **Beginners are most sensitive to tutorial quality**: The interaction effect shows that tutorial improvements particularly matter for player acquisition and retention among new audiences. Build B helps beginners substantially more than experienced players.
+
+3. **Frustration is the key metric**: The very strong negative correlation between frustration and recommendation (r = `r r_frust_rec`) indicates that minimizing frustration is more important than maximizing any single positive feature. Deaths strongly correlate with frustration (r = 0.71), highlighting the importance of fair difficulty.
+
+### Limitations
+
+1. **Sample size for completed Build A tasks**: Only 9 participants completed Task 1 in Build A, yielding a wide confidence interval for completion time comparisons. While completion rate differences are clear, efficiency comparisons among successful completions are underpowered.
+
+2. **Platform confounding**: Console players averaged 1.2 more deaths than PC players. This could reflect control scheme differences, selection bias (e.g., less experienced players on Console), or both. We cannot isolate platform effects from player skill with this study design.
+
+3. **Selection bias**: All participants were recruited from our college gaming club. This sample likely overrepresents younger, more experienced gamers compared to the general player population. Effects on true beginners or older players may differ.
+
+4. **Single-session design**: We measured immediate experience only. Long-term effects on skill development and engagement require longitudinal testing.
+
+### Comparison to Previous Testing
+
+These results validate our design rationale from alpha testing, which identified navigation as the primary barrier to early engagement. The revised waypoint system successfully addresses player feedback that "I didn't know where to go" was the most common reason for abandoning the game within the first hour.
+
+---
+
+## Recommendations
+
+### HIGH PRIORITY: Implement Build B's Tutorial System for Final Release
+
+**Evidence:** Build B increased Task 1 completion by 35 percentage points (95% CI: [`r ci_result_low_perc`%, `r ci_result_high_perc`%]), improved UI clarity by 2.4 points, and reduced player deaths by 1.6 on average. Beginner players showed a 69% gain in completion rates.
+
+**Expected Impact:** Dramatically improved new player onboarding and retention. Based on our alpha telemetry, 40% of players abandoned the game before completing the first quest objective. Build B's improvements should reduce this early drop-off substantially.
+
+**Implementation:** The waypoint and contextual hint systems are already implemented in Build B. Migration to final release requires:
+
+- QA testing across all quest types
+- Localization of hint text for 8 languages
+- Performance optimization for Console (see Priority 2)
+
+**Timeline:** 4-6 weeks for full implementation and testing.
+
+### MEDIUM PRIORITY: Investigate Console Platform Performance
+
+**Evidence:** Console players averaged 3.8 deaths compared to 2.6 on PC (difference of +1.2 deaths). While this could reflect player skill differences, qualitative feedback included two Console-specific comments about "clunky controls."
+
+**Expected Impact:** If control scheme is the issue, optimizing Console controls could further improve the Build B gains observed. If player skill is the confound, this validates our design decision that scaffolding (waypoints/hints) compensates for skill differences.
+
+> A confound (or confounding variable) in data analytics is an unmeasured third variable that influences both the independent variable (cause) and dependent variable (effect)
+
+**Implementation:** Conduct targeted Console-specific playtesting with experienced players on both platforms. Test whether control remapping or aim assist adjustments reduce death counts without changing core difficulty.
+
+**Timeline:** 2-3 weeks for diagnostic testing.
+
+### LOW PRIORITY: Add Optional "Challenge Mode" for Experienced Players
+
+**Evidence:** Build B's combat fun rating was slightly lower than Build A (5.5 vs 5.9), though the difference was small. Some qualitative feedback from experienced players indicated the enhanced guidance made the game "too easy."
+
+**Expected Impact:** Providing an optional mode that reduces or disables tutorial hints could preserve challenge for veterans while maintaining accessibility for beginners. This addresses the slight trade-off between usability and difficulty.
+
+**Implementation:** Add a toggle in settings: "Tutorial Assistance: Full / Minimal / Off." This preserves Build B's benefits as the default while offering customization.
+
+**Timeline:** 1-2 weeks for implementation; minimal risk.
+
+### Action Plan & Next Steps
+
+1. **Immediate (Week 12-13)**: Finalize Build B integration into main branch, begin QA testing
+2. **Short-term (Week 14-16)**: Conduct Console-specific diagnostic testing
+3. **Medium-term (Week 17-20)**: Implement challenge mode toggle, localization, and polish
+4. **Long-term (Post-launch)**: Monitor telemetry for Task 1 completion rates in live environment; iterate if needed
+
+We recommend a follow-up study post-launch to validate these improvements with a larger, more diverse player sample.
+
+---
+
+## Conclusion
+
+### Summary of Findings
+
+Build B's enhanced waypoint and tutorial system represents a clear, evidence-based improvement over the original Build A. Task 1 completion rates more than doubled, UI clarity improved dramatically, and player frustration decreased. Most importantly, these improvements particularly benefited beginner players, demonstrating that good tutorial design can effectively reduce skill barriers without compromising experienced player enjoyment.
+
+### Value of Findings
+
+These results provide strong quantitative validation for our design direction. Rather than relying on anecdotal feedback or designer intuition, we now have statistical evidence that our tutorial revisions achieve their intended goals. The interaction effect finding (Build B helps beginners most) is particularly valuable, as it demonstrates we can improve accessibility without "dumbing down" the experience for our core audience.
+
+### Future Considerations
+
+As we approach final release, we should:
+
+- Monitor Task 1 completion rates in live telemetry to confirm lab findings generalize
+- Investigate whether the tutorial improvements affect long-term engagement (30-day retention)
+- Apply similar waypoint/hint design patterns to later quests that currently show high abandonment
+
+The success of Build B's tutorial redesign suggests that investing in clarity and player guidance - rather than assuming players will "figure it out"- pays substantial dividends in player satisfaction and retention.
+
+---
+
+## References
+
+- Schell, J. (2019). *The Art of Game Design: A Book of Lenses* (3rd ed.). CRC Press.
+
+---
+
+## Appendices
+
+### Appendix A: Raw Data
+
+Data available at:
+
+- [open_world_user_testing_survey_data.csv](../data/open_world_user_testing_survey_data.csv)
+
+### Appendix B: Survey Instrument
+
+See attached: 
+
+- [open_world_user_testing_survey.md](../data/open_world_user_testing_survey.md)
+
+### Appendix C: Statistical Methods
+
+**Bootstrap CI Calculation:** We used percentile bootstrap with 5000 resamples to estimate the 95% confidence interval for the difference in proportions, as this method does not assume normality and is appropriate for binary outcomes.
+
+**Correlation:** Pearson's correlation coefficient was used for all pairs of continuous/ordinal variables, calculated on complete cases only.
+
+

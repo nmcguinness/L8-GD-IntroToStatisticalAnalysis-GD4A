@@ -1,41 +1,81 @@
 respondent_id,build,experience_band,platform,session_minutes,task1_complete,task1_time_sec,task2_complete,task2_time_sec,task3_complete,task3_time_sec,deaths_total,bugs_reported,ui_clarity_1to7,navigation_1to7,combat_fun_1to7,frustration_1to7,recommend_0to10,free_text
-R01,A,beginner,PC,42.3,0,,,0,,15,5,2,2,3,7,3,Got completely lost near the river; couldn't find the objective marker at all.,
-R02,B,beginner,PC,31.5,1,142,1,235,1,189,4,1,6,6,5,3,8,The new tutorial prompts were super helpful! Much clearer than my friend's experience with the old version.
-R03,A,experienced,Console,24.1,1,89,1,198,1,136,1,0,6,6,7,2,9,Combat felt satisfying once I learned the dodge timing. No issues finding objectives.
-R04,B,beginner,PC,38.9,1,158,1,271,0,,9,2,5,4,4,5,6,Quest marker helped but combat difficulty spike at the bridge was brutal.
-R05,A,intermediate,PC,35.2,1,134,0,,1,203,6,3,3,3,5,6,5,UI hints appeared too late. I'd already made the wrong turn before the hint showed up.
-R06,B,beginner,Console,29.8,1,128,1,242,1,196,3,1,6,6,5,3,8,Enemy damage felt fair this time. I heard it was worse before.
-R07,B,experienced,PC,22.4,1,81,1,179,1,125,0,0,7,7,7,1,10,"Smooth experience, loved the world atmosphere and sound design."
-R08,A,beginner,PC,45.6,0,,,0,,18,6,4,2,4,7,2,"Fast travel is great once you find it, but I never figured out how to unlock the first shrine.",
-R09,B,intermediate,Console,27.3,1,106,1,209,1,162,2,0,6,6,6,3,8,Much better balanced than I expected from the early access reviews.
-R10,A,intermediate,PC,32.8,1,127,1,288,1,184,5,2,4,4,5,5,6,Quest marker was hard to notice in bright areas. Died repeatedly at same enemy encounter.
-R11,B,beginner,PC,33.2,1,145,1,256,1,201,5,1,5,5,4,4,7,Still challenging but I felt like I was learning rather than just dying randomly.
-R12,A,experienced,PC,23.9,1,85,1,192,1,133,1,0,6,6,7,2,9,Combat felt satisfying. Tutorial stuff was unnecessary for me but didn't get in the way.
-R13,B,intermediate,PC,26.1,1,102,1,201,1,155,2,0,6,6,6,3,8,Frame-rate dipped during storms but overall very playable.
-R14,A,beginner,Console,44.1,0,,,1,245,12,4,2,2,3,7,3,Got lost near the river; map could be way clearer. Gave up after 40 minutes.,
-R15,B,experienced,Console,21.7,1,78,1,175,1,128,0,0,7,7,7,1,9,Fast travel system works great. Appreciated the freedom to explore.
-R16,A,intermediate,PC,36.7,1,139,1,294,1,191,7,3,3,3,4,6,5,Quest marker was hard to notice. Also hit a bug where the door didn't open—had to reload.
-R17,B,beginner,PC,35.4,1,151,0,,1,209,7,1,5,5,4,5,7,Enemy damage felt okay after I upgraded my armor. Tutorial helped a lot.
-R18,A,experienced,PC,25.3,1,91,1,205,1,141,2,1,6,5,6,3,8,Combat felt satisfying once I learned the parry timing.
-R19,B,intermediate,Console,25.8,1,99,1,207,1,159,1,0,6,6,6,3,8,Loved the world atmosphere and sound design. Very polished experience.
-R20,A,beginner,PC,41.2,0,,,0,,14,5,3,3,4,7,4,Got lost immediately after the first area. No idea where to go next.,
-R21,B,experienced,PC,23.1,1,83,1,186,1,130,1,0,7,7,7,1,9,Great experience overall. No complaints.
-R22,A,intermediate,PC,34.5,1,131,1,279,1,186,6,2,4,4,5,6,6,Frame-rate issues during storms. Quest objectives unclear at times.
-R23,B,beginner,Console,32.6,1,139,1,249,0,,8,2,5,4,4,5,7,Quest marker helped me not get lost. Last area was too hard though.
-R24,A,experienced,Console,24.8,1,88,1,201,1,138,1,0,6,6,7,2,9,Combat felt satisfying. Good challenge level for experienced players.
-R25,B,intermediate,PC,26.9,1,104,1,212,1,164,2,0,6,6,6,3,8,Fast travel is great once unlocked. Tutorial was clear.
-R26,A,beginner,PC,43.8,0,,,0,,16,6,2,2,3,7,3,Map is confusing. Couldn't figure out the shrine puzzle. Just wandered around.,
-R27,B,experienced,PC,22.8,1,80,1,181,1,127,0,0,7,7,7,1,10,Loved the world atmosphere. Very smooth and polished.
-R28,A,intermediate,Console,33.1,1,125,1,285,1,179,5,2,4,4,5,5,6,Quest marker barely visible. Died a lot at the canyon section.
-R29,B,beginner,PC,34.7,1,148,1,263,1,206,6,1,5,5,4,4,7,Harder than expected but the hints kept me on track. Felt fair.
-R30,B,intermediate,PC,27.5,1,107,1,215,1,167,2,0,6,6,6,3,8,Great pacing. Combat and exploration both felt rewarding.
-R31,A,beginner,Console,46.2,0,,,0,,19,7,2,1,3,7,2,Console controls felt clunky. PC version might be better? Couldn't complete first area.,
-R32,B,beginner,Console,30.9,1,135,1,238,1,194,4,1,6,5,5,3,8,Much better than what my friends described from the beta.
-R33,A,experienced,PC,25.7,1,93,1,209,1,145,2,0,6,5,6,3,8,Solid game. A few rough edges but nothing major.
-R34,B,experienced,PC,21.9,1,79,1,177,1,124,0,0,7,7,7,1,9,Excellent polish. Combat mechanics are tight.
-R35,A,intermediate,PC,37.9,1,143,0,,1,197,8,3,3,3,4,6,5,Hit a game-breaking bug in Task 2 where enemy AI froze. Had to skip that section.
-R36,B,beginner,PC,33.8,1,146,1,254,1,202,5,1,5,5,4,4,7,Tutorial was helpful. Still died a lot but felt like I was improving.
-R37,A,beginner,PC,44.6,0,,,0,,17,6,2,2,3,7,3,Navigation is terrible. Spent 30 minutes going in circles.,
-R38,B,intermediate,Console,26.5,1,101,1,205,1,157,1,0,6,6,6,3,8,Smooth experience. No major issues.
-R39,A,experienced,Console,26.1,1,95,1,213,1,148,2,1,6,5,6,3,8,Combat is good. Exploration feels a bit aimless at times.
-R40,B,experienced,PC,22.5,1,81,1,180,1,126,0,0,7,7,7,1,10,Near perfect. Would recommend to anyone.
+R001,A,intermediate,PS5,10.0,0,,0,145,0,,5,2,2,3,6,4,3,Got completely lost near the river; couldn't find the objective marker at all.
+R002,A,intermediate,PC,26.1,1,228.0,0,,1,271.0,3,0,5,6,6,3,7,Solid game. Combat is rewarding when you master it.
+R003,A,Intermediate,PC,20.9,0,,1,268.0,0,,3,0,5,4,5,4,4,Navigation is terrible. Spent 30 minutes going in circles.
+R004,A,intermediate,PC,29.0,1,160.0,0,,1,203.0,2,0,4,4,7,3,7,Solid game. Combat is rewarding when you master it.
+R005,A ,beginner,PC,19.5,1,213.0,0,,0,,6,0,4,3,5,-1,3,Decent experience. Could use some polish.
+,A,beginner,PC,27.5,0,,1,353.0,0,,14,0,3,5,7,3,8,Super challenging but that's what I love! Combat feels rewarding when you get it right.
+R007,A,experienced,PC,37.6,1,143.0,1,220.0,1,172.0,0,1,4,6,7,2,11,Parry system is excellent once you get the hang of it.
+R008,A,experienced,Console,18.3,0,,1,251.0,0,,1,0,5,6,5,4,4,UI gave me zero hints. Beginner nightmare.
+R009, A,experienced,PC,19.1,0,,1,249.0,0,,2,0,4,5,7,4,4,Got lost immediately after the first area. No idea where to go next.
+R010,A, beginner,PC,23.6,0,,0,,1,242.0,5,0,3,3,6,5,2,UI gave me zero hints. Beginner nightmare.
+R011,A,intermediate,PC,30.9,1,162.0,1,257.0,1,310.0,,1,3,5,6,4,6,Combat felt satisfying once I learned the timing. Good challenge.
+R012,A,beginner ,pc,22.3,1,203.0,0,,0,,8,0,2,4,5,4,99,Enemy damage felt brutal. Died repeatedly at the same encounter.
+R013,A,intermediate,Console,27.0,0,,1,249.0,1,207.0,5,0,2,5,6,4,5,Map is confusing. Couldn't figure out the shrine puzzle. Just wandered around.
+R014,A,experienced, PC,16.0,1,190.0,0,,0,,3,0,5,6,6,4,5,Solid game. Combat is rewarding when you master it.
+R036,A,experienced,Console,18.2,0,,0,,1,194.0,6,0,4,4,6,5,3,Map is confusing. Couldn't figure out the shrine puzzle. Just wandered around.
+R016,A,beginner,PS5,20.4,0,,0,,0,,9,0,3,5,6,7,1,UI gave me zero hints. Beginner nightmare.
+R017,A,intermediate,PC,14.9,0,,0,,0,,2,0,4,5,6,4,4,Got completely lost near the river; couldn't find the objective marker at all.
+R018,A,intermediate,PC,19.3,1,181.0,0,,0,,7,0,4,2,7,4,4,Great experience overall. Combat mechanics are tight.
+R019,A, beginner,Console,32.7,0,,1,298.0,1,234.0,9,0,3,5,7,5,4,UI gave me zero hints. Beginner nightmare.
+R020,A,experienced,Console,23.2,0,,1,250.0,0,,2,0,3,4,6,4,5,Got completely lost near the river; couldn't find the objective marker at all.
+R021,A,beginner,Console,17.8,0,,0,,0,,7,0,4,3,6,6,1,Got lost immediately after the first area. No idea where to go next.
+R022,n/a,beginner ,Console,23.2,1,206.0,0,,0,,9,0,4,3,6,7,2,Combat difficulty spike was too harsh. Frustrating experience.
+R023,A,beginner ,PC,31.12345,0,,0,,0,,8,0,4,4,7,6,1,Map is confusing. Couldn't figure out the shrine puzzle. Just wandered around.
+R024,A,experienced,PC,29.1,0,,1,245.0,1,186.0,0,-2,5,5,6,2,6,Map is confusing. Couldn't figure out the shrine puzzle. Just wandered around.
+R025,A,intermediate,PC,22.2,0,,1,319.0,0,,0,0,3,3,5,2,5,Got lost immediately after the first area. No idea where to go next.
+R026,A,beginner,Console,25.7,0,,0,,1,260.0,9,0,4,4,5,5,3,Got completely lost near the river; couldn't find the objective marker at all.
+R027,A,experienced,PC,36.9,1,163.0,1,279.0,1,200.0,1,0,4,5,6,3,8,Solid game. Combat is rewarding when you master it.
+R028,A,experienced,PC,38.1,1,168.0,1,223.0,1,210.0,-1,1,5,6,6,2,8,Loved the world atmosphere and sound design. Very polished.
+R029,A,beginner,PC,21.4,0,,1,325.0,0,,5,0,4,3,7,3,5,UI gave me zero hints. Beginner nightmare.
+R030, A,experienced,PC,31.0,1,144.0,0,,1,172.0,1,0,3,4,7,3,7,Great experience overall. Combat mechanics are tight.
+R031,A,intermediate, PC,21.6,1,159.0,0,,0,,2,2.5.1,4,4,5,4,7,UI hints appeared too late sometimes.
+R032,A ,Expert,CONSOLE,33.2,0,,1,241.0,1,191.0,3,1,4,6,5,4,4,Got lost immediately after the first area. No idea where to go next.
+R033,A,beginner,PC,20.9,0,,1,298.0,0,,8,0,4,4,6,5,2,Got completely lost near the river; couldn't find the objective marker at all.
+R034,A,INTERMEDIATE,Console,34.2,0,,1,290.0,1,238.0,6,0,4,5,7,4,6,Got completely lost near the river; couldn't find the objective marker at all.
+R035,A,intermediate,PC,13.6,0,9999,0,,0,,5,0,4,2,6,5,2,Got lost immediately after the first area. No idea where to go next.
+R036,A,intermediate,PC,27.0,0,,1,389.0,1,236.0,3,1,4,3,5,3,7,Map is confusing. Couldn't figure out the shrine puzzle. Just wandered around.
+R037,A,beginner,Console,21.5,0,,1,364.0,0,,7,1,4,4,6,4,4,Navigation is terrible. Spent 30 minutes going in circles.
+R038,A ,intermediate,Console,20.0,0,,1,281.0,0,,five,0,4,3,5,5,5,Got completely lost near the river; couldn't find the objective marker at all.
+R039,A,experienced,PC,28.3,0,,1,240.0,1,172.0,2,0,3,4,7,4,4,Map is confusing. Couldn't figure out the shrine puzzle. Just wandered around.
+R040,A,Expert,Console ,20.6,0,,0,,1,218.0,3,0,4,4,NA,3,6,UI gave me zero hints. Beginner nightmare.
+R041,B,intermediate,PC,27.3,0,,1,243.0,1,172.0,0,0,7,7,5,3,10,   
+NA,B, beginner, PC,22.9,1,197.0,0,,0,,3,1,7,4,7,3,6,Quest marker helped me not get lost. Very beginner-friendly.
+R043,B,intermediate,PC,250.5,1,176.0,1,356.0,1,206.0,0,1,7,6,5,2,10,Quest marker helped me not get lost. Very beginner-friendly.
+R044, B,beginner,PC,28.2,1,153.0,0,,0,,3,0,4,7,4,3,5,Some rough edges but nothing game-breaking.
+R045,B,experienced,PC,36.3,0,,0,,0,,15,8,0,6,6,7,2,Hit a game-breaking bug where controls stopped responding. Couldn't complete anything.
+R046,B,intermediate,PC,21.1,1,145.0,0,,0,,0,1,7,6,5,3,7,Tutorial was clear. Fast travel system works great.
+R047,  ,beginner,PC,23.4,1,164.0,0,,0,,50,0,6,6,6,3,4,Waypoint system made navigation so much easier.
+R048,B,experienced,Pc,20.8,1,139.0,0,,0,,2,0,7,6,6,4,7,Quest marker helped me not get lost. Very beginner-friendly.
+R049,B,,PC,25.9,1,159.0,0,,1,184.0,2,0,7,7,6,2,9,Quest marker helped me not get lost. Very beginner-friendly.
+R050,B,beginner,Console,,1,207.0,1,251.0,0,,7,0,6,5,5,3,8,Tutorial was clear. Fast travel system works great.
+R051,B,experienced,PC,30.0,1,157.82,1,187.0,1,133.0,1,1,7,6,5,2,10,The new tutorial prompts were super helpful! Much clearer than expected.
+R052,B,beginner,PC,23.456789,1,174.0,0,,1,222.0,3,0,6,6,5,2,10,The new tutorial prompts were super helpful! Much clearer than expected.
+R053,B,intermediate,Console,30.9,1,175.0,0,,1,175.0,4,0,6,6,10,3,8,Much better balanced than I expected. Hints kept me on track.
+R054,B ,Beginner,PC,21.6,1,162.0,0,,0,,3,0,7,3,4,4,6,Tutorial was clear. Fast travel system works great.
+R055,B,intermediate,PC ,33.7,1,134.0,1,201.5,0,,5,0,6,6,6,4,7,Much better balanced than I expected. Hints kept me on track.
+R056,B,experienced,PC,31.3,1,157.0,1,224.0,1,202.0,0,0,7,7,7,1,10,Tutorial was clear. Fast travel system works great.
+R057,B,expert,PC,30.6,1,164.0,1,192.0,1,155.0,1,25,6,7,6,2,8,Waypoint system made navigation so much easier.
+R058,B,expert,Console,35.7,1,115.0,1,204.0,1,140.0,3,0,7,8,7,3,9,Quest marker helped me not get lost. Very beginner-friendly.
+R059,B,experienced,Console ,38.1,1,120.0,1,194.0,1,140.0,1,1,5,5,5,1,,Decent experience. Could use some polish.
+R060, B,experienced,PC,32.1,0,,1,212.0,1,186.0,0,0,,7,4,2,9,Tutorial was clear. Fast travel system works great.
+R061,B,Inter,Console,35.6,1,163.0,1,235.0,1,190.0,2,0,7,,6,2,9,Quest marker helped me not get lost. Very beginner-friendly.
+R062,B,experienced,Console,38.2,1,101.0,1,212.0,1,162.0,1,0,6,7,6,1,9,The new tutorial prompts were super helpful! Much clearer than expected.
+R063,B,beginner ,PC,38.9,1,157.0,1,388.0,1,225.0,7,0,5,6,7,4,7,Combat felt satisfying once I learned the timing. Good challenge.
+R064,B,experienced, ,26.5,0,,1,187.0,1,173.0,1,0,7,6,7,2,9,Much better balanced than I expected. Hints kept me on track.
+R065,B ,beginner,PC,-5.3,1,194.0,1,319.0,1,229.0,7,0,7,5,6,3,9,Tutorial was clear. Fast travel system works great.
+R066,B,beginner,Console,25.0,0,,0,,1,250.0,7,0,5,6,6,3,7,Great experience overall. Combat mechanics are tight.
+R067,B,beginner,Console,34.3,1,171.0,1,246.0,1,250.0,8,0,5,5,5,3,7,Enemy damage felt brutal. Died repeatedly at the same encounter.
+R068,B,INTERMEDIATE,PC,33.4,1,138.0,1,244.0,0,,1,0,6,5,4,1,9,Waypoint system made navigation so much easier.
+R069,B,EXPERIENCED,PC,39.1,1,176.0,1,205.0,1,168.0,0,1,6,6,6,1,10,Quest marker helped me not get lost. Very beginner-friendly.
+R070,B ,Inter,PC,35.1,1,,1,254.0,1,234.0,0,0,6,6,7,1,10,Waypoint system made navigation so much easier.
+R071,B,beginner,PC,32.2,1,194.0,1,260.0,0,,6,0,4,7,6,4,6,Parry system is excellent once you get the hang of it.
+R072,B,intermediate,Console,38.5,1,142.0,1,237.0,1,205.0,2,1,7,6,6,2,9,The new tutorial prompts were super helpful! Much clearer than expected.
+R073,B ,intermediate,Console,25.abc,0,,1,236.0,0,,2,1,7,6,5,3,7,The new tutorial prompts were super helpful! Much clearer than expected.
+R074,B,expert,PC,25.3,1,98.0,0,,1,146.0,0,0,5,6,6,2,8,Combat felt satisfying once I learned the timing. Good challenge.
+R075,B,N/A,PC,35.0,1,153.0,1,241.0,1,195.0,2,0,7,5,6,1,10,Much better balanced than I expected. Hints kept me on track.
+R076, B,intermediate,PC,28.9,1,162.0,0,,1,183.0,1,0,7,4,5,2,9,Waypoint system made navigation so much easier.
+R077,B,beginner,PC,34.5,1,999,1,260.0,0,,3,0,5,5,5,3,5,Some rough edges but nothing game-breaking.
+R078,b,intermediate,PC,30.6,1,144.0,1,233.0,0,,0,1,7,6,6,1,9,Quest marker helped me not get lost. Very beginner-friendly.
+R079,B,experienced,pc,33.9,1,115.0,1,215.0,1,147.0,0,0,6,6,7,2,10,Much better balanced than I expected. Hints kept me on track.
+R080,B,BEGINNER,Console,25.3,1,176.0,0,,0,,3,0,6,6,5,3,6,Tutorial was clear. Fast travel system works great.
