@@ -8,7 +8,7 @@
 
 ---
 
-> **Report Length:** Maximum 1600 words (excludes tables, figures, references, and appendices)
+> **Report Length:** Maximum 2000-3000 words (excludes tables, figures, references, and appendices)
 
 ---
 
