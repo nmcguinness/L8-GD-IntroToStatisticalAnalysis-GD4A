@@ -9,7 +9,7 @@ format:
     toc: true
     toc-depth: 3
     number-sections: true
-    code-fold: true
+    code-fold: show
     highlight-style: github
     theme: cosmo
     fig-width: 6
@@ -29,7 +29,7 @@ format:
   #   fig-width: 6
   #   fig-height: 4
 execute:
-  echo: false
+  echo: true
   warning: false
   message: false
 ---

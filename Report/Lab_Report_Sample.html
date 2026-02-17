@@ -1,0 +1,1263 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.25">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Team XYZ: Jane Smith, Alex Smith, Bea Smith">
+<meta name="dcterms.date" content="2026-02-16">
+<meta name="keywords" content="collaborative, project, survey, analysis, game">
+
+<title>2025-26 - 3DGD - User Testing Lab Report</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="Lab_Report_Sample_files/libs/clipboard/clipboard.min.js"></script>
+<script src="Lab_Report_Sample_files/libs/quarto-html/quarto.js" type="module"></script>
+<script src="Lab_Report_Sample_files/libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="Lab_Report_Sample_files/libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="Lab_Report_Sample_files/libs/quarto-html/popper.min.js"></script>
+<script src="Lab_Report_Sample_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="Lab_Report_Sample_files/libs/quarto-html/anchor.min.js"></script>
+<link href="Lab_Report_Sample_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="Lab_Report_Sample_files/libs/quarto-html/quarto-syntax-highlighting-065a5179aebd64318d7ea99d77b64a9e.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="Lab_Report_Sample_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="Lab_Report_Sample_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="Lab_Report_Sample_files/libs/bootstrap/bootstrap-8db4201b14708b18b0c4eb564971129b.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+
+
+</head>
+
+<body class="quarto-light">
+
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
+<div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+  <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#executive-summary" id="toc-executive-summary" class="nav-link active" data-scroll-target="#executive-summary"><span class="header-section-number">1</span> Executive Summary</a></li>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link" data-scroll-target="#introduction"><span class="header-section-number">2</span> Introduction</a>
+  <ul class="collapse">
+  <li><a href="#game-context-background" id="toc-game-context-background" class="nav-link" data-scroll-target="#game-context-background"><span class="header-section-number">2.1</span> Game Context &amp; Background</a></li>
+  <li><a href="#scope-of-testing" id="toc-scope-of-testing" class="nav-link" data-scroll-target="#scope-of-testing"><span class="header-section-number">2.2</span> Scope of Testing</a></li>
+  <li><a href="#testing-objectives" id="toc-testing-objectives" class="nav-link" data-scroll-target="#testing-objectives"><span class="header-section-number">2.3</span> Testing Objectives</a></li>
+  <li><a href="#hypotheses" id="toc-hypotheses" class="nav-link" data-scroll-target="#hypotheses"><span class="header-section-number">2.4</span> Hypotheses</a></li>
+  </ul></li>
+  <li><a href="#methodology" id="toc-methodology" class="nav-link" data-scroll-target="#methodology"><span class="header-section-number">3</span> Methodology</a>
+  <ul class="collapse">
+  <li><a href="#test-design-approach" id="toc-test-design-approach" class="nav-link" data-scroll-target="#test-design-approach"><span class="header-section-number">3.1</span> Test Design &amp; Approach</a></li>
+  <li><a href="#participants" id="toc-participants" class="nav-link" data-scroll-target="#participants"><span class="header-section-number">3.2</span> Participants</a></li>
+  <li><a href="#materials-tools" id="toc-materials-tools" class="nav-link" data-scroll-target="#materials-tools"><span class="header-section-number">3.3</span> Materials &amp; Tools</a></li>
+  <li><a href="#procedure" id="toc-procedure" class="nav-link" data-scroll-target="#procedure"><span class="header-section-number">3.4</span> Procedure</a></li>
+  </ul></li>
+  <li><a href="#data-analysis" id="toc-data-analysis" class="nav-link" data-scroll-target="#data-analysis"><span class="header-section-number">4</span> Data Analysis</a>
+  <ul class="collapse">
+  <li><a href="#data-cleaning" id="toc-data-cleaning" class="nav-link" data-scroll-target="#data-cleaning"><span class="header-section-number">4.1</span> Data Cleaning</a></li>
+  <li><a href="#metrics-chosen" id="toc-metrics-chosen" class="nav-link" data-scroll-target="#metrics-chosen"><span class="header-section-number">4.2</span> Metrics Chosen</a></li>
+  <li><a href="#statistical-methods" id="toc-statistical-methods" class="nav-link" data-scroll-target="#statistical-methods"><span class="header-section-number">4.3</span> Statistical Methods</a></li>
+  </ul></li>
+  <li><a href="#results" id="toc-results" class="nav-link" data-scroll-target="#results"><span class="header-section-number">5</span> Results</a>
+  <ul class="collapse">
+  <li><a href="#summary-statistics" id="toc-summary-statistics" class="nav-link" data-scroll-target="#summary-statistics"><span class="header-section-number">5.1</span> Summary Statistics</a></li>
+  <li><a href="#confidence-interval" id="toc-confidence-interval" class="nav-link" data-scroll-target="#confidence-interval"><span class="header-section-number">5.2</span> Confidence Interval</a></li>
+  <li><a href="#key-findings-by-category" id="toc-key-findings-by-category" class="nav-link" data-scroll-target="#key-findings-by-category"><span class="header-section-number">5.3</span> Key Findings by Category</a></li>
+  <li><a href="#visualizations" id="toc-visualizations" class="nav-link" data-scroll-target="#visualizations"><span class="header-section-number">5.4</span> Visualizations</a></li>
+  <li><a href="#build-comparison" id="toc-build-comparison" class="nav-link" data-scroll-target="#build-comparison"><span class="header-section-number">5.5</span> Build Comparison</a></li>
+  <li><a href="#correlation-analysis" id="toc-correlation-analysis" class="nav-link" data-scroll-target="#correlation-analysis"><span class="header-section-number">5.6</span> Correlation Analysis</a></li>
+  </ul></li>
+  <li><a href="#discussion" id="toc-discussion" class="nav-link" data-scroll-target="#discussion"><span class="header-section-number">6</span> Discussion</a>
+  <ul class="collapse">
+  <li><a href="#interpretation-of-findings" id="toc-interpretation-of-findings" class="nav-link" data-scroll-target="#interpretation-of-findings"><span class="header-section-number">6.1</span> Interpretation of Findings</a></li>
+  <li><a href="#key-insights" id="toc-key-insights" class="nav-link" data-scroll-target="#key-insights"><span class="header-section-number">6.2</span> Key Insights</a></li>
+  <li><a href="#limitations" id="toc-limitations" class="nav-link" data-scroll-target="#limitations"><span class="header-section-number">6.3</span> Limitations</a></li>
+  <li><a href="#comparison-to-previous-testing" id="toc-comparison-to-previous-testing" class="nav-link" data-scroll-target="#comparison-to-previous-testing"><span class="header-section-number">6.4</span> Comparison to Previous Testing</a></li>
+  </ul></li>
+  <li><a href="#recommendations" id="toc-recommendations" class="nav-link" data-scroll-target="#recommendations"><span class="header-section-number">7</span> Recommendations</a>
+  <ul class="collapse">
+  <li><a href="#high-priority-implement-build-bs-tutorial-system-for-final-release" id="toc-high-priority-implement-build-bs-tutorial-system-for-final-release" class="nav-link" data-scroll-target="#high-priority-implement-build-bs-tutorial-system-for-final-release"><span class="header-section-number">7.1</span> HIGH PRIORITY: Implement Build B’s Tutorial System for Final Release</a></li>
+  <li><a href="#medium-priority-investigate-console-platform-performance" id="toc-medium-priority-investigate-console-platform-performance" class="nav-link" data-scroll-target="#medium-priority-investigate-console-platform-performance"><span class="header-section-number">7.2</span> MEDIUM PRIORITY: Investigate Console Platform Performance</a></li>
+  <li><a href="#low-priority-add-optional-challenge-mode-for-experienced-players" id="toc-low-priority-add-optional-challenge-mode-for-experienced-players" class="nav-link" data-scroll-target="#low-priority-add-optional-challenge-mode-for-experienced-players"><span class="header-section-number">7.3</span> LOW PRIORITY: Add Optional “Challenge Mode” for Experienced Players</a></li>
+  <li><a href="#action-plan-next-steps" id="toc-action-plan-next-steps" class="nav-link" data-scroll-target="#action-plan-next-steps"><span class="header-section-number">7.4</span> Action Plan &amp; Next Steps</a></li>
+  </ul></li>
+  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion"><span class="header-section-number">8</span> Conclusion</a>
+  <ul class="collapse">
+  <li><a href="#summary-of-findings" id="toc-summary-of-findings" class="nav-link" data-scroll-target="#summary-of-findings"><span class="header-section-number">8.1</span> Summary of Findings</a></li>
+  <li><a href="#value-of-findings" id="toc-value-of-findings" class="nav-link" data-scroll-target="#value-of-findings"><span class="header-section-number">8.2</span> Value of Findings</a></li>
+  <li><a href="#future-considerations" id="toc-future-considerations" class="nav-link" data-scroll-target="#future-considerations"><span class="header-section-number">8.3</span> Future Considerations</a></li>
+  </ul></li>
+  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references"><span class="header-section-number">9</span> References</a></li>
+  <li><a href="#appendices" id="toc-appendices" class="nav-link" data-scroll-target="#appendices"><span class="header-section-number">10</span> Appendices</a>
+  <ul class="collapse">
+  <li><a href="#appendix-a-raw-data" id="toc-appendix-a-raw-data" class="nav-link" data-scroll-target="#appendix-a-raw-data"><span class="header-section-number">10.1</span> Appendix A: Raw Data</a></li>
+  <li><a href="#appendix-b-survey-instrument" id="toc-appendix-b-survey-instrument" class="nav-link" data-scroll-target="#appendix-b-survey-instrument"><span class="header-section-number">10.2</span> Appendix B: Survey Instrument</a></li>
+  <li><a href="#appendix-c-statistical-methods" id="toc-appendix-c-statistical-methods" class="nav-link" data-scroll-target="#appendix-c-statistical-methods"><span class="header-section-number">10.3</span> Appendix C: Statistical Methods</a></li>
+  </ul></li>
+  </ul>
+<div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="Lab_Report_Sample.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li></ul></div></nav>
+</div>
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">2025-26 - 3DGD - User Testing Lab Report</h1>
+<p class="subtitle lead">OtherWorld: Evaluating Build B Tutorial Improvements</p>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Team XYZ: Jane Smith, Alex Smith, Bea Smith </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">February 16, 2026</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+<div>
+  <div class="keywords">
+    <div class="block-title">Keywords</div>
+    <p>collaborative, project, survey, analysis, game</p>
+  </div>
+</div>
+
+</header>
+
+
+<section id="executive-summary" class="level2" data-number="1">
+<h2 data-number="1" class="anchored" data-anchor-id="executive-summary"><span class="header-section-number">1</span> Executive Summary</h2>
+<p>We conducted user testing on two versions of OuterWild’s tutorial system across 80 participants. Build B, featuring an improved waypoint and UI hint system, significantly outperformed the original Build A. Task 1 completion rates increased from 23% to 58% (95% CI: [35%, 72%]), and UI clarity ratings improved by 2.4 points on a 7-point scale. Notably, Build B disproportionately benefited beginner players (+69% completion gain) compared to experienced players (+39% gain), demonstrating that the new tutorial effectively “flattens the skill curve.” We recommend implementing Build B’s improvements for the final release, with particular attention to console (Playstation 5) platform optimization.</p>
+<hr>
+</section>
+<section id="introduction" class="level2" data-number="2">
+<h2 data-number="2" class="anchored" data-anchor-id="introduction"><span class="header-section-number">2</span> Introduction</h2>
+<section id="game-context-background" class="level3" data-number="2.1">
+<h3 data-number="2.1" class="anchored" data-anchor-id="game-context-background"><span class="header-section-number">2.1</span> Game Context &amp; Background</h3>
+<p>OuterWild is an open-world action RPG currently in beta testing. The game features exploration, combat, and quest-based progression on PC and Console platforms. Our development team identified navigation and tutorial clarity as critical pain points during alpha testing, particularly for players new to the open-world genre.</p>
+</section>
+<section id="scope-of-testing" class="level3" data-number="2.2">
+<h3 data-number="2.2" class="anchored" data-anchor-id="scope-of-testing"><span class="header-section-number">2.2</span> Scope of Testing</h3>
+<p>This study compares two game builds tested across two sessions:</p>
+<ul>
+<li><strong>Build A</strong> (Week 7): Original tutorial with minimal waypoint guidance</li>
+<li><strong>Build B</strong> (Week 11): Revised tutorial with enhanced waypoints, contextual UI hints, and improved objective markers</li>
+</ul>
+<p>Testing focused on three core tasks:</p>
+<ol type="1">
+<li><strong>Navigation Task</strong>: Reach a marked shrine using the map and waypoint system</li>
+<li><strong>Quest Task</strong>: Locate an NPC and complete a quest objective</li>
+<li><strong>Combat Task</strong>: Defeat or escape a bandit camp encounter</li>
+</ol>
+</section>
+<section id="testing-objectives" class="level3" data-number="2.3">
+<h3 data-number="2.3" class="anchored" data-anchor-id="testing-objectives"><span class="header-section-number">2.3</span> Testing Objectives</h3>
+<p>We sought to answer:</p>
+<ol type="1">
+<li>Does Build B improve task completion rates compared to Build A?</li>
+<li>Does Build B reduce player frustration and improve usability ratings?</li>
+<li>Does the improved tutorial benefit all skill levels equally?</li>
+<li>What is the relationship between navigation clarity and player recommendation?</li>
+</ol>
+</section>
+<section id="hypotheses" class="level3" data-number="2.4">
+<h3 data-number="2.4" class="anchored" data-anchor-id="hypotheses"><span class="header-section-number">2.4</span> Hypotheses</h3>
+<ul>
+<li><strong>H₀:</strong> There is no difference in Task 1 completion rates between Build A and Build B.</li>
+<li><strong>H₁:</strong> Build B increases Task 1 completion rates compared to Build A.</li>
+</ul>
+<hr>
+</section>
+</section>
+<section id="methodology" class="level2" data-number="3">
+<h2 data-number="3" class="anchored" data-anchor-id="methodology"><span class="header-section-number">3</span> Methodology</h2>
+<section id="test-design-approach" class="level3" data-number="3.1">
+<h3 data-number="3.1" class="anchored" data-anchor-id="test-design-approach"><span class="header-section-number">3.1</span> Test Design &amp; Approach</h3>
+<p>We conducted moderated playtesting sessions using a think-aloud protocol. Participants played one assigned build (between-subjects design) while observers recorded completion metrics, deaths, and bugs. Sessions were conducted in-person in our module lab (P1119).</p>
+<p><strong>Testing Sessions:</strong></p>
+<ul>
+<li>Week 7 (N=40): Build A baseline testing</li>
+<li>Week 11 (N=40): Build B validation testing</li>
+</ul>
+</section>
+<section id="participants" class="level3" data-number="3.2">
+<h3 data-number="3.2" class="anchored" data-anchor-id="participants"><span class="header-section-number">3.2</span> Participants</h3>
+<p><strong>Recruitment:</strong> Participants were recruited from our degree programme. No prior experience with OuterWild was required.</p>
+<p><strong>Sample Composition:</strong></p>
+<ul>
+<li>Total N = 80 (40 per build)</li>
+<li>Experience distribution: 26 beginners, 28 intermediate, 26 experienced</li>
+<li>Platform: 65% PC, 35% Console</li>
+</ul>
+<p><strong>Ethics:</strong> All participants provided informed consent and were informed they could withdraw at any time. No personally identifying information was collected.</p>
+</section>
+<section id="materials-tools" class="level3" data-number="3.3">
+<h3 data-number="3.3" class="anchored" data-anchor-id="materials-tools"><span class="header-section-number">3.3</span> Materials &amp; Tools</h3>
+<p><strong>Game Build:</strong> OuterWild Beta v0.7.2 (Build A) and v0.8.1 (Build B)<br>
+<strong>Platforms:</strong> Windows 11 PC (RTX 5060) and PlayStation 5<br>
+<strong>Recording:</strong> OBS Studio for gameplay capture, Google Forms for post-session survey</p>
+</section>
+<section id="procedure" class="level3" data-number="3.4">
+<h3 data-number="3.4" class="anchored" data-anchor-id="procedure"><span class="header-section-number">3.4</span> Procedure</h3>
+<p>Each session followed this protocol:</p>
+<ol type="1">
+<li>Welcome and consent form (5 min)</li>
+<li>Brief control tutorial (5 min)</li>
+<li>Gameplay session with three sequential tasks (30-40 min)</li>
+<li>Post-session survey including ratings and open feedback (5 min)</li>
+<li>Brief debrief interview (5 min)</li>
+</ol>
+<p>Facilitators observed but did not intervene during gameplay except to clarify instructions if requested.</p>
+<hr>
+</section>
+</section>
+<section id="data-analysis" class="level2" data-number="4">
+<h2 data-number="4" class="anchored" data-anchor-id="data-analysis"><span class="header-section-number">4</span> Data Analysis</h2>
+<div class="cell">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load data</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"../data/open_world_user_testing_survey_data.csv"</span>, <span class="at">stringsAsFactors =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Display initial structure</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Initial dataset dimensions:"</span>, <span class="fu">nrow</span>(df), <span class="st">"rows,"</span>, <span class="fu">ncol</span>(df), <span class="st">"columns</span><span class="sc">\n</span><span class="st">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>Initial dataset dimensions: 80 rows, 19 columns</code></pre>
+</div>
+</div>
+<section id="data-cleaning" class="level3" data-number="4.1">
+<h3 data-number="4.1" class="anchored" data-anchor-id="data-cleaning"><span class="header-section-number">4.1</span> Data Cleaning</h3>
+<p>We encountered several data quality issues requiring cleaning before analysis.</p>
+<div class="cell">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Standardize categorical variables</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>df<span class="sc">$</span>build <span class="ot">&lt;-</span> <span class="fu">tolower</span>(<span class="fu">trimws</span>(df<span class="sc">$</span>build))</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>df<span class="sc">$</span>build[df<span class="sc">$</span>build <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"n/a"</span>, <span class="st">""</span>, <span class="st">" "</span>)] <span class="ot">&lt;-</span> <span class="cn">NA</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>df<span class="sc">$</span>build[df<span class="sc">$</span>build <span class="sc">==</span> <span class="st">"a"</span>] <span class="ot">&lt;-</span> <span class="st">"A"</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>df<span class="sc">$</span>build[df<span class="sc">$</span>build <span class="sc">==</span> <span class="st">"b"</span>] <span class="ot">&lt;-</span> <span class="st">"B"</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>df<span class="sc">$</span>experience_band <span class="ot">&lt;-</span> <span class="fu">tolower</span>(<span class="fu">trimws</span>(df<span class="sc">$</span>experience_band))</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>df<span class="sc">$</span>experience_band[df<span class="sc">$</span>experience_band <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"expert"</span>, <span class="st">"experienced"</span>)] <span class="ot">&lt;-</span> <span class="st">"experienced"</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>df<span class="sc">$</span>experience_band[df<span class="sc">$</span>experience_band <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"inter"</span>, <span class="st">"intermediate"</span>)] <span class="ot">&lt;-</span> <span class="st">"intermediate"</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>df<span class="sc">$</span>experience_band[df<span class="sc">$</span>experience_band <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">""</span>, <span class="st">"n/a"</span>, <span class="st">" "</span>)] <span class="ot">&lt;-</span> <span class="cn">NA</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>df<span class="sc">$</span>platform <span class="ot">&lt;-</span> <span class="fu">trimws</span>(df<span class="sc">$</span>platform)</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>df<span class="sc">$</span>platform[df<span class="sc">$</span>platform <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"PlayStation"</span>, <span class="st">"PS5"</span>, <span class="st">"console"</span>, <span class="st">"CONSOLE"</span>, <span class="st">"Console "</span>)] <span class="ot">&lt;-</span> <span class="st">"Console"</span></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>df<span class="sc">$</span>platform[df<span class="sc">$</span>platform <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"pc"</span>, <span class="st">"PC "</span>, <span class="st">"Pc"</span>, <span class="st">"computer"</span>)] <span class="ot">&lt;-</span> <span class="st">"PC"</span></span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert numeric columns and fix precision</span></span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>numeric_cols <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"session_minutes"</span>, <span class="st">"task1_time_sec"</span>, <span class="st">"task2_time_sec"</span>, </span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>                  <span class="st">"task3_time_sec"</span>, <span class="st">"deaths_total"</span>, <span class="st">"bugs_reported"</span>,</span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>                  <span class="st">"ui_clarity_1to7"</span>, <span class="st">"navigation_1to7"</span>, <span class="st">"combat_fun_1to7"</span>,</span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>                  <span class="st">"frustration_1to7"</span>, <span class="st">"recommend_0to10"</span>)</span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (col <span class="cf">in</span> numeric_cols) {</span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a>  df[[col]] <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(df[[col]])</span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a><span class="co"># Fix precision: minutes to 1 decimal, seconds to whole numbers</span></span>
+<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a>df<span class="sc">$</span>session_minutes <span class="ot">&lt;-</span> <span class="fu">round</span>(df<span class="sc">$</span>session_minutes, <span class="dv">1</span>)</span>
+<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a>df<span class="sc">$</span>task1_time_sec <span class="ot">&lt;-</span> <span class="fu">round</span>(df<span class="sc">$</span>task1_time_sec, <span class="dv">0</span>)</span>
+<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a>df<span class="sc">$</span>task2_time_sec <span class="ot">&lt;-</span> <span class="fu">round</span>(df<span class="sc">$</span>task2_time_sec, <span class="dv">0</span>)</span>
+<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a>df<span class="sc">$</span>task3_time_sec <span class="ot">&lt;-</span> <span class="fu">round</span>(df<span class="sc">$</span>task3_time_sec, <span class="dv">0</span>)</span>
+<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a><span class="co"># Handle out-of-range values</span></span>
+<span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a>df<span class="sc">$</span>ui_clarity_1to7[df<span class="sc">$</span>ui_clarity_1to7 <span class="sc">&lt;</span> <span class="dv">1</span> <span class="sc">|</span> df<span class="sc">$</span>ui_clarity_1to7 <span class="sc">&gt;</span> <span class="dv">7</span>] <span class="ot">&lt;-</span> <span class="cn">NA</span></span>
+<span id="cb3-34"><a href="#cb3-34" aria-hidden="true" tabindex="-1"></a>df<span class="sc">$</span>navigation_1to7[df<span class="sc">$</span>navigation_1to7 <span class="sc">&lt;</span> <span class="dv">1</span> <span class="sc">|</span> df<span class="sc">$</span>navigation_1to7 <span class="sc">&gt;</span> <span class="dv">7</span>] <span class="ot">&lt;-</span> <span class="cn">NA</span></span>
+<span id="cb3-35"><a href="#cb3-35" aria-hidden="true" tabindex="-1"></a>df<span class="sc">$</span>combat_fun_1to7[df<span class="sc">$</span>combat_fun_1to7 <span class="sc">&lt;</span> <span class="dv">1</span> <span class="sc">|</span> df<span class="sc">$</span>combat_fun_1to7 <span class="sc">&gt;</span> <span class="dv">7</span>] <span class="ot">&lt;-</span> <span class="cn">NA</span></span>
+<span id="cb3-36"><a href="#cb3-36" aria-hidden="true" tabindex="-1"></a>df<span class="sc">$</span>frustration_1to7[df<span class="sc">$</span>frustration_1to7 <span class="sc">&lt;</span> <span class="dv">1</span> <span class="sc">|</span> df<span class="sc">$</span>frustration_1to7 <span class="sc">&gt;</span> <span class="dv">7</span>] <span class="ot">&lt;-</span> <span class="cn">NA</span></span>
+<span id="cb3-37"><a href="#cb3-37" aria-hidden="true" tabindex="-1"></a>df<span class="sc">$</span>recommend_0to10[df<span class="sc">$</span>recommend_0to10 <span class="sc">&lt;</span> <span class="dv">0</span> <span class="sc">|</span> df<span class="sc">$</span>recommend_0to10 <span class="sc">&gt;</span> <span class="dv">10</span>] <span class="ot">&lt;-</span> <span class="cn">NA</span></span>
+<span id="cb3-38"><a href="#cb3-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-39"><a href="#cb3-39" aria-hidden="true" tabindex="-1"></a><span class="co"># Handle negative values (data entry errors)</span></span>
+<span id="cb3-40"><a href="#cb3-40" aria-hidden="true" tabindex="-1"></a>df<span class="sc">$</span>deaths_total[df<span class="sc">$</span>deaths_total <span class="sc">&lt;</span> <span class="dv">0</span>] <span class="ot">&lt;-</span> <span class="cn">NA</span></span>
+<span id="cb3-41"><a href="#cb3-41" aria-hidden="true" tabindex="-1"></a>df<span class="sc">$</span>bugs_reported[df<span class="sc">$</span>bugs_reported <span class="sc">&lt;</span> <span class="dv">0</span>] <span class="ot">&lt;-</span> <span class="cn">NA</span></span>
+<span id="cb3-42"><a href="#cb3-42" aria-hidden="true" tabindex="-1"></a>df<span class="sc">$</span>session_minutes[df<span class="sc">$</span>session_minutes <span class="sc">&lt;</span> <span class="dv">0</span>] <span class="ot">&lt;-</span> <span class="cn">NA</span></span>
+<span id="cb3-43"><a href="#cb3-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-44"><a href="#cb3-44" aria-hidden="true" tabindex="-1"></a><span class="co"># Remove extreme outliers (likely data entry errors)</span></span>
+<span id="cb3-45"><a href="#cb3-45" aria-hidden="true" tabindex="-1"></a>df<span class="sc">$</span>deaths_total[df<span class="sc">$</span>deaths_total <span class="sc">&gt;</span> <span class="dv">20</span>] <span class="ot">&lt;-</span> <span class="cn">NA</span></span>
+<span id="cb3-46"><a href="#cb3-46" aria-hidden="true" tabindex="-1"></a>df<span class="sc">$</span>bugs_reported[df<span class="sc">$</span>bugs_reported <span class="sc">&gt;</span> <span class="dv">15</span>] <span class="ot">&lt;-</span> <span class="cn">NA</span></span>
+<span id="cb3-47"><a href="#cb3-47" aria-hidden="true" tabindex="-1"></a>df<span class="sc">$</span>session_minutes[df<span class="sc">$</span>session_minutes <span class="sc">&gt;</span> <span class="dv">100</span>] <span class="ot">&lt;-</span> <span class="cn">NA</span></span>
+<span id="cb3-48"><a href="#cb3-48" aria-hidden="true" tabindex="-1"></a>df<span class="sc">$</span>task1_time_sec[df<span class="sc">$</span>task1_time_sec <span class="sc">&gt;</span> <span class="dv">500</span>] <span class="ot">&lt;-</span> <span class="cn">NA</span></span>
+<span id="cb3-49"><a href="#cb3-49" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-50"><a href="#cb3-50" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"After cleaning:"</span>, <span class="fu">nrow</span>(df), <span class="st">"rows with"</span>, <span class="fu">sum</span>(<span class="fu">complete.cases</span>(df)), <span class="st">"complete cases</span><span class="sc">\n</span><span class="st">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>After cleaning: 80 rows with 9 complete cases</code></pre>
+</div>
+</div>
+<p><strong>Exclusions:</strong> We excluded 3 participants with incomplete demographic data and corrected data entry errors (negative values, extreme outliers). Final sample: Build A (n=40), Build B (n=40).</p>
+</section>
+<section id="metrics-chosen" class="level3" data-number="4.2">
+<h3 data-number="4.2" class="anchored" data-anchor-id="metrics-chosen"><span class="header-section-number">4.2</span> Metrics Chosen</h3>
+<p>We focused on four primary metrics aligned with our testing objectives:</p>
+<ol type="1">
+<li><strong>Task 1 Completion Rate</strong> (binary) — measures navigation system effectiveness</li>
+<li><strong>Task 1 Completion Time</strong> (seconds) — measures efficiency among successful completions</li>
+<li><strong>UI Clarity Rating</strong> (1-7 scale) — measures perceived interface usability</li>
+<li><strong>Player Recommendation</strong> (0-10 scale) — measures overall satisfaction</li>
+</ol>
+</section>
+<section id="statistical-methods" class="level3" data-number="4.3">
+<h3 data-number="4.3" class="anchored" data-anchor-id="statistical-methods"><span class="header-section-number">4.3</span> Statistical Methods</h3>
+<p>We employed:</p>
+<ul>
+<li><strong>Descriptive statistics</strong> (mean, median, SD, n) for all key metrics</li>
+<li><strong>95% confidence interval</strong> for the difference in Task 1 completion rates between builds</li>
+<li><strong>Correlation matrix</strong> to examine relationships among deaths, ratings, and recommendation</li>
+<li><strong>Interaction analysis</strong> to assess whether Build B benefits differ by experience level</li>
+</ul>
+<hr>
+</section>
+</section>
+<section id="results" class="level2" data-number="5">
+<h2 data-number="5" class="anchored" data-anchor-id="results"><span class="header-section-number">5</span> Results</h2>
+<section id="summary-statistics" class="level3" data-number="5.1">
+<h3 data-number="5.1" class="anchored" data-anchor-id="summary-statistics"><span class="header-section-number">5.1</span> Summary Statistics</h3>
+<div class="cell">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create summary statistics by build</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"</span><span class="sc">\n</span><span class="st">=== Table 1: Summary of Key Metrics by Build ===</span><span class="sc">\n\n</span><span class="st">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+=== Table 1: Summary of Key Metrics by Build ===</code></pre>
+</div>
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Build simple summary table</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>metrics <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">Metric =</span> <span class="fu">c</span>(<span class="st">"Task 1 Completion Rate (%)"</span>, </span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>             <span class="st">"Deaths (mean ± SD)"</span>,</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>             <span class="st">"UI Clarity (mean ± SD)"</span>,</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>             <span class="st">"Navigation (mean ± SD)"</span>, </span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>             <span class="st">"Recommendation (mean ± SD)"</span>),</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">Build_A =</span> <span class="fu">c</span>(</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">sprintf</span>(<span class="st">"%.0f%%"</span>, <span class="fu">mean</span>(df<span class="sc">$</span>task1_complete[df<span class="sc">$</span>build <span class="sc">==</span> <span class="st">"A"</span>], <span class="at">na.rm =</span> <span class="cn">TRUE</span>) <span class="sc">*</span> <span class="dv">100</span>),</span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">sprintf</span>(<span class="st">"%.1f ± %.1f"</span>, <span class="fu">mean</span>(df<span class="sc">$</span>deaths_total[df<span class="sc">$</span>build <span class="sc">==</span> <span class="st">"A"</span>], <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>                           <span class="fu">sd</span>(df<span class="sc">$</span>deaths_total[df<span class="sc">$</span>build <span class="sc">==</span> <span class="st">"A"</span>], <span class="at">na.rm =</span> <span class="cn">TRUE</span>)),</span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>    <span class="fu">sprintf</span>(<span class="st">"%.1f ± %.1f"</span>, <span class="fu">mean</span>(df<span class="sc">$</span>ui_clarity_1to7[df<span class="sc">$</span>build <span class="sc">==</span> <span class="st">"A"</span>], <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>                           <span class="fu">sd</span>(df<span class="sc">$</span>ui_clarity_1to7[df<span class="sc">$</span>build <span class="sc">==</span> <span class="st">"A"</span>], <span class="at">na.rm =</span> <span class="cn">TRUE</span>)),</span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>    <span class="fu">sprintf</span>(<span class="st">"%.1f ± %.1f"</span>, <span class="fu">mean</span>(df<span class="sc">$</span>navigation_1to7[df<span class="sc">$</span>build <span class="sc">==</span> <span class="st">"A"</span>], <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>                           <span class="fu">sd</span>(df<span class="sc">$</span>navigation_1to7[df<span class="sc">$</span>build <span class="sc">==</span> <span class="st">"A"</span>], <span class="at">na.rm =</span> <span class="cn">TRUE</span>)),</span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>    <span class="fu">sprintf</span>(<span class="st">"%.1f ± %.1f"</span>, <span class="fu">mean</span>(df<span class="sc">$</span>recommend_0to10[df<span class="sc">$</span>build <span class="sc">==</span> <span class="st">"A"</span>], <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>                           <span class="fu">sd</span>(df<span class="sc">$</span>recommend_0to10[df<span class="sc">$</span>build <span class="sc">==</span> <span class="st">"A"</span>], <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a>  ),</span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a>  <span class="at">Build_B =</span> <span class="fu">c</span>(</span>
+<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a>    <span class="fu">sprintf</span>(<span class="st">"%.0f%%"</span>, <span class="fu">mean</span>(df<span class="sc">$</span>task1_complete[df<span class="sc">$</span>build <span class="sc">==</span> <span class="st">"B"</span>], <span class="at">na.rm =</span> <span class="cn">TRUE</span>) <span class="sc">*</span> <span class="dv">100</span>),</span>
+<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a>    <span class="fu">sprintf</span>(<span class="st">"%.1f ± %.1f"</span>, <span class="fu">mean</span>(df<span class="sc">$</span>deaths_total[df<span class="sc">$</span>build <span class="sc">==</span> <span class="st">"B"</span>], <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a>                           <span class="fu">sd</span>(df<span class="sc">$</span>deaths_total[df<span class="sc">$</span>build <span class="sc">==</span> <span class="st">"B"</span>], <span class="at">na.rm =</span> <span class="cn">TRUE</span>)),</span>
+<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a>    <span class="fu">sprintf</span>(<span class="st">"%.1f ± %.1f"</span>, <span class="fu">mean</span>(df<span class="sc">$</span>ui_clarity_1to7[df<span class="sc">$</span>build <span class="sc">==</span> <span class="st">"B"</span>], <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a>                           <span class="fu">sd</span>(df<span class="sc">$</span>ui_clarity_1to7[df<span class="sc">$</span>build <span class="sc">==</span> <span class="st">"B"</span>], <span class="at">na.rm =</span> <span class="cn">TRUE</span>)),</span>
+<span id="cb7-25"><a href="#cb7-25" aria-hidden="true" tabindex="-1"></a>    <span class="fu">sprintf</span>(<span class="st">"%.1f ± %.1f"</span>, <span class="fu">mean</span>(df<span class="sc">$</span>navigation_1to7[df<span class="sc">$</span>build <span class="sc">==</span> <span class="st">"B"</span>], <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb7-26"><a href="#cb7-26" aria-hidden="true" tabindex="-1"></a>                           <span class="fu">sd</span>(df<span class="sc">$</span>navigation_1to7[df<span class="sc">$</span>build <span class="sc">==</span> <span class="st">"B"</span>], <span class="at">na.rm =</span> <span class="cn">TRUE</span>)),</span>
+<span id="cb7-27"><a href="#cb7-27" aria-hidden="true" tabindex="-1"></a>    <span class="fu">sprintf</span>(<span class="st">"%.1f ± %.1f"</span>, <span class="fu">mean</span>(df<span class="sc">$</span>recommend_0to10[df<span class="sc">$</span>build <span class="sc">==</span> <span class="st">"B"</span>], <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb7-28"><a href="#cb7-28" aria-hidden="true" tabindex="-1"></a>                           <span class="fu">sd</span>(df<span class="sc">$</span>recommend_0to10[df<span class="sc">$</span>build <span class="sc">==</span> <span class="st">"B"</span>], <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span>
+<span id="cb7-29"><a href="#cb7-29" aria-hidden="true" tabindex="-1"></a>  ),</span>
+<span id="cb7-30"><a href="#cb7-30" aria-hidden="true" tabindex="-1"></a>  <span class="at">n =</span> <span class="fu">c</span>(</span>
+<span id="cb7-31"><a href="#cb7-31" aria-hidden="true" tabindex="-1"></a>    <span class="fu">sprintf</span>(<span class="st">"A=%d, B=%d"</span>, </span>
+<span id="cb7-32"><a href="#cb7-32" aria-hidden="true" tabindex="-1"></a>            <span class="fu">sum</span>(<span class="sc">!</span><span class="fu">is.na</span>(df<span class="sc">$</span>task1_complete[df<span class="sc">$</span>build <span class="sc">==</span> <span class="st">"A"</span>])),</span>
+<span id="cb7-33"><a href="#cb7-33" aria-hidden="true" tabindex="-1"></a>            <span class="fu">sum</span>(<span class="sc">!</span><span class="fu">is.na</span>(df<span class="sc">$</span>task1_complete[df<span class="sc">$</span>build <span class="sc">==</span> <span class="st">"B"</span>]))),</span>
+<span id="cb7-34"><a href="#cb7-34" aria-hidden="true" tabindex="-1"></a>    <span class="fu">sprintf</span>(<span class="st">"A=%d, B=%d"</span>,</span>
+<span id="cb7-35"><a href="#cb7-35" aria-hidden="true" tabindex="-1"></a>            <span class="fu">sum</span>(<span class="sc">!</span><span class="fu">is.na</span>(df<span class="sc">$</span>deaths_total[df<span class="sc">$</span>build <span class="sc">==</span> <span class="st">"A"</span>])),</span>
+<span id="cb7-36"><a href="#cb7-36" aria-hidden="true" tabindex="-1"></a>            <span class="fu">sum</span>(<span class="sc">!</span><span class="fu">is.na</span>(df<span class="sc">$</span>deaths_total[df<span class="sc">$</span>build <span class="sc">==</span> <span class="st">"B"</span>]))),</span>
+<span id="cb7-37"><a href="#cb7-37" aria-hidden="true" tabindex="-1"></a>    <span class="fu">sprintf</span>(<span class="st">"A=%d, B=%d"</span>,</span>
+<span id="cb7-38"><a href="#cb7-38" aria-hidden="true" tabindex="-1"></a>            <span class="fu">sum</span>(<span class="sc">!</span><span class="fu">is.na</span>(df<span class="sc">$</span>ui_clarity_1to7[df<span class="sc">$</span>build <span class="sc">==</span> <span class="st">"A"</span>])),</span>
+<span id="cb7-39"><a href="#cb7-39" aria-hidden="true" tabindex="-1"></a>            <span class="fu">sum</span>(<span class="sc">!</span><span class="fu">is.na</span>(df<span class="sc">$</span>ui_clarity_1to7[df<span class="sc">$</span>build <span class="sc">==</span> <span class="st">"B"</span>]))),</span>
+<span id="cb7-40"><a href="#cb7-40" aria-hidden="true" tabindex="-1"></a>    <span class="fu">sprintf</span>(<span class="st">"A=%d, B=%d"</span>,</span>
+<span id="cb7-41"><a href="#cb7-41" aria-hidden="true" tabindex="-1"></a>            <span class="fu">sum</span>(<span class="sc">!</span><span class="fu">is.na</span>(df<span class="sc">$</span>navigation_1to7[df<span class="sc">$</span>build <span class="sc">==</span> <span class="st">"A"</span>])),</span>
+<span id="cb7-42"><a href="#cb7-42" aria-hidden="true" tabindex="-1"></a>            <span class="fu">sum</span>(<span class="sc">!</span><span class="fu">is.na</span>(df<span class="sc">$</span>navigation_1to7[df<span class="sc">$</span>build <span class="sc">==</span> <span class="st">"B"</span>]))),</span>
+<span id="cb7-43"><a href="#cb7-43" aria-hidden="true" tabindex="-1"></a>    <span class="fu">sprintf</span>(<span class="st">"A=%d, B=%d"</span>,</span>
+<span id="cb7-44"><a href="#cb7-44" aria-hidden="true" tabindex="-1"></a>            <span class="fu">sum</span>(<span class="sc">!</span><span class="fu">is.na</span>(df<span class="sc">$</span>recommend_0to10[df<span class="sc">$</span>build <span class="sc">==</span> <span class="st">"A"</span>])),</span>
+<span id="cb7-45"><a href="#cb7-45" aria-hidden="true" tabindex="-1"></a>            <span class="fu">sum</span>(<span class="sc">!</span><span class="fu">is.na</span>(df<span class="sc">$</span>recommend_0to10[df<span class="sc">$</span>build <span class="sc">==</span> <span class="st">"B"</span>])))</span>
+<span id="cb7-46"><a href="#cb7-46" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb7-47"><a href="#cb7-47" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb7-48"><a href="#cb7-48" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-49"><a href="#cb7-49" aria-hidden="true" tabindex="-1"></a><span class="co"># Print table</span></span>
+<span id="cb7-50"><a href="#cb7-50" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(metrics, <span class="at">row.names =</span> <span class="cn">FALSE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>                     Metric   Build_A   Build_B          n
+ Task 1 Completion Rate (%)       31%       85% A=39, B=39
+         Deaths (mean ± SD) 4.5 ± 3.2 2.7 ± 3.1 A=36, B=39
+     UI Clarity (mean ± SD) 3.8 ± 0.8 6.2 ± 0.9 A=39, B=37
+     Navigation (mean ± SD) 4.3 ± 1.1 5.8 ± 0.9 A=39, B=37
+ Recommendation (mean ± SD) 4.6 ± 2.0 8.1 ± 1.8 A=37, B=38</code></pre>
+</div>
+</div>
+<p><strong>Table 1</strong> shows clear differences between builds. Build B participants had lower deaths (2.9 vs 4.5), higher UI clarity ratings (6.2 vs 3.8), higher navigation ratings (5.9 vs 4.1), and higher recommendation scores (7.9 vs 6.0).</p>
+<blockquote class="blockquote">
+<p>Do the statistics in the table match those in the commentary above?</p>
+</blockquote>
+</section>
+<section id="confidence-interval" class="level3" data-number="5.2">
+<h3 data-number="5.2" class="anchored" data-anchor-id="confidence-interval"><span class="header-section-number">5.2</span> Confidence Interval</h3>
+<p>We calculated a 95% confidence interval for the difference in Task 1 completion rates using bootstrap resampling.</p>
+<div class="cell">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Bootstrap function for difference in proportions</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>bootstrap_prop_diff <span class="ot">&lt;-</span> <span class="cf">function</span>(x1, x2, <span class="at">n_boot =</span> <span class="dv">5000</span>, <span class="at">seed =</span> <span class="dv">42</span>) {</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">set.seed</span>(seed)</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>  prop1 <span class="ot">&lt;-</span> <span class="fu">mean</span>(x1, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>  prop2 <span class="ot">&lt;-</span> <span class="fu">mean</span>(x2, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>  diff_observed <span class="ot">&lt;-</span> prop2 <span class="sc">-</span> prop1</span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Bootstrap</span></span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>  boot_diffs <span class="ot">&lt;-</span> <span class="fu">numeric</span>(n_boot)</span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>n_boot) {</span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>    boot1 <span class="ot">&lt;-</span> <span class="fu">sample</span>(x1, <span class="at">replace =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>    boot2 <span class="ot">&lt;-</span> <span class="fu">sample</span>(x2, <span class="at">replace =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>    boot_diffs[i] <span class="ot">&lt;-</span> <span class="fu">mean</span>(boot2, <span class="at">na.rm =</span> <span class="cn">TRUE</span>) <span class="sc">-</span> <span class="fu">mean</span>(boot1, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Calculate CI</span></span>
+<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a>  ci_low <span class="ot">&lt;-</span> <span class="fu">quantile</span>(boot_diffs, <span class="fl">0.025</span>)</span>
+<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a>  ci_high <span class="ot">&lt;-</span> <span class="fu">quantile</span>(boot_diffs, <span class="fl">0.975</span>)</span>
+<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb9-21"><a href="#cb9-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">list</span>(<span class="at">estimate =</span> diff_observed,</span>
+<span id="cb9-22"><a href="#cb9-22" aria-hidden="true" tabindex="-1"></a>       <span class="at">ci_low =</span> ci_low,</span>
+<span id="cb9-23"><a href="#cb9-23" aria-hidden="true" tabindex="-1"></a>       <span class="at">ci_high =</span> ci_high)</span>
+<span id="cb9-24"><a href="#cb9-24" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb9-25"><a href="#cb9-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-26"><a href="#cb9-26" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate CI for Task 1 completion</span></span>
+<span id="cb9-27"><a href="#cb9-27" aria-hidden="true" tabindex="-1"></a>task1_A <span class="ot">&lt;-</span> df<span class="sc">$</span>task1_complete[df<span class="sc">$</span>build <span class="sc">==</span> <span class="st">"A"</span>]</span>
+<span id="cb9-28"><a href="#cb9-28" aria-hidden="true" tabindex="-1"></a>task1_B <span class="ot">&lt;-</span> df<span class="sc">$</span>task1_complete[df<span class="sc">$</span>build <span class="sc">==</span> <span class="st">"B"</span>]</span>
+<span id="cb9-29"><a href="#cb9-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-30"><a href="#cb9-30" aria-hidden="true" tabindex="-1"></a>ci_result <span class="ot">&lt;-</span> <span class="fu">bootstrap_prop_diff</span>(task1_A, task1_B, <span class="at">n_boot =</span> <span class="dv">5000</span>, <span class="at">seed =</span> <span class="dv">42</span>)</span>
+<span id="cb9-31"><a href="#cb9-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-32"><a href="#cb9-32" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="fu">sprintf</span>(<span class="st">"</span><span class="sc">\n</span><span class="st">=== 95%% CI for Task 1 Completion Rate Difference ===</span><span class="sc">\n</span><span class="st">"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+=== 95% CI for Task 1 Completion Rate Difference ===</code></pre>
+</div>
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="fu">sprintf</span>(<span class="st">"Build B increased completion by %.1f%% (95%% CI: [%.1f%%, %.1f%%])</span><span class="sc">\n</span><span class="st">"</span>,</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>            ci_result<span class="sc">$</span>estimate <span class="sc">*</span> <span class="dv">100</span>,</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>            ci_result<span class="sc">$</span>ci_low <span class="sc">*</span> <span class="dv">100</span>,</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>            ci_result<span class="sc">$</span>ci_high <span class="sc">*</span> <span class="dv">100</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>Build B increased completion by 53.8% (95% CI: [35.0%, 71.8%])</code></pre>
+</div>
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>ci_result_low_perc <span class="ot">&lt;-</span> <span class="fu">round</span>(ci_result<span class="sc">$</span>ci_low <span class="sc">*</span> <span class="dv">100</span>)</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>ci_result_high_perc <span class="ot">&lt;-</span> <span class="fu">round</span>(ci_result<span class="sc">$</span>ci_high <span class="sc">*</span> <span class="dv">100</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+<p><strong>Build B increased Task 1 completion by approximately 35 percentage points</strong> (95% CI: [35%, 72%]). Since the confidence interval excludes zero, this difference is unlikely due to chance alone. This represents a substantial improvement in navigation task success, likely attributable to the enhanced waypoint system and contextual UI hints implemented in Build B.</p>
+</section>
+<section id="key-findings-by-category" class="level3" data-number="5.3">
+<h3 data-number="5.3" class="anchored" data-anchor-id="key-findings-by-category"><span class="header-section-number">5.3</span> Key Findings by Category</h3>
+<blockquote class="blockquote">
+<p>Do the statistics in the match those in the commentary below?</p>
+</blockquote>
+<section id="navigation-task-completion" class="level4" data-number="5.3.1">
+<h4 data-number="5.3.1" class="anchored" data-anchor-id="navigation-task-completion"><span class="header-section-number">5.3.1</span> Navigation &amp; Task Completion</h4>
+<p>Build B dramatically improved navigation task completion. Only 23% of Build A participants completed Task 1, compared to 58% in Build B. Among those who completed the task, Build B users were also faster (154 seconds vs 172 seconds average).</p>
+<p>This improvement aligns with the higher UI clarity ratings (6.2 vs 3.8) and navigation ratings (5.9 vs 4.1) observed in Build B. Open-ended feedback from Build B participants frequently mentioned “helpful waypoints” and “clear objective markers.”</p>
+</section>
+<section id="player-frustration" class="level4" data-number="5.3.2">
+<h4 data-number="5.3.2" class="anchored" data-anchor-id="player-frustration"><span class="header-section-number">5.3.2</span> Player Frustration</h4>
+<p>Build B reduced player frustration significantly. The mean frustration rating was 2.9 in Build B compared to 3.6 in Build A (on a 1-7 scale where higher = more frustrated). This aligns with the lower death counts observed in Build B (2.9 vs 4.5 average).</p>
+</section>
+<section id="overall-satisfaction" class="level4" data-number="5.3.3">
+<h4 data-number="5.3.3" class="anchored" data-anchor-id="overall-satisfaction"><span class="header-section-number">5.3.3</span> Overall Satisfaction</h4>
+<p>Build B received higher recommendation scores (7.9 vs 6.0 on a 0-10 scale), indicating that improved navigation directly contributes to overall player satisfaction. This suggests the tutorial improvements address a core pain point that affects the entire play experience.</p>
+</section>
+</section>
+<section id="visualizations" class="level3" data-number="5.4">
+<h3 data-number="5.4" class="anchored" data-anchor-id="visualizations"><span class="header-section-number">5.4</span> Visualizations</h3>
+<section id="figure-1-task-1-completion-by-build" class="level4" data-number="5.4.1">
+<h4 data-number="5.4.1" class="anchored" data-anchor-id="figure-1-task-1-completion-by-build"><span class="header-section-number">5.4.1</span> Figure 1: Task 1 Completion by Build</h4>
+<div class="cell">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Completion rate by build</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>completion_A <span class="ot">&lt;-</span> <span class="fu">mean</span>(df<span class="sc">$</span>task1_complete[df<span class="sc">$</span>build <span class="sc">==</span> <span class="st">"A"</span>], <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>completion_B <span class="ot">&lt;-</span> <span class="fu">mean</span>(df<span class="sc">$</span>task1_complete[df<span class="sc">$</span>build <span class="sc">==</span> <span class="st">"B"</span>], <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a><span class="fu">barplot</span>(<span class="fu">c</span>(completion_A, completion_B) <span class="sc">*</span> <span class="dv">100</span>,</span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>        <span class="at">names.arg =</span> <span class="fu">c</span>(<span class="st">"Build A"</span>, <span class="st">"Build B"</span>),</span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>        <span class="at">col =</span> <span class="fu">c</span>(<span class="st">"coral"</span>, <span class="st">"skyblue"</span>),</span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>        <span class="at">main =</span> <span class="st">"Task 1 Completion Rate by Build"</span>,</span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>        <span class="at">ylab =</span> <span class="st">"Completion Rate (%)"</span>,</span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a>        <span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">100</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Lab_Report_Sample_files/figure-html/fig1-completion-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p><strong>Figure 1</strong> shows Build B more than doubled the Task 1 completion rate (58% vs 23%). This dramatic improvement demonstrates that the revised waypoint system successfully addresses the navigation clarity issues identified in alpha testing.</p>
+</section>
+<section id="figure-2-distribution-of-player-deaths" class="level4" data-number="5.4.2">
+<h4 data-number="5.4.2" class="anchored" data-anchor-id="figure-2-distribution-of-player-deaths"><span class="header-section-number">5.4.2</span> Figure 2: Distribution of Player Deaths</h4>
+<div class="cell">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">boxplot</span>(deaths_total <span class="sc">~</span> build, <span class="at">data =</span> df,</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>        <span class="at">col =</span> <span class="fu">c</span>(<span class="st">"coral"</span>, <span class="st">"skyblue"</span>),</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>        <span class="at">main =</span> <span class="st">"Player Deaths by Build"</span>,</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>        <span class="at">xlab =</span> <span class="st">"Build Version"</span>,</span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>        <span class="at">ylab =</span> <span class="st">"Total Deaths"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Lab_Report_Sample_files/figure-html/fig2-deaths-1.png" class="img-fluid figure-img" width="768"></p>
+</figure>
+</div>
+</div>
+</div>
+<p><strong>Figure 2</strong> reveals Build B participants died less frequently (median = 2 vs 4 deaths). The boxplot also shows two outliers in each build with unusually high death counts (&gt;8). Review of qualitative feedback suggests these outliers encountered technical issues (game-breaking bugs) or deliberately sought challenge rather than completing objectives efficiently.</p>
+</section>
+<section id="figure-3-task-completion-by-experience-level-and-build" class="level4" data-number="5.4.3">
+<h4 data-number="5.4.3" class="anchored" data-anchor-id="figure-3-task-completion-by-experience-level-and-build"><span class="header-section-number">5.4.3</span> Figure 3: Task Completion by Experience Level and Build</h4>
+<div class="cell">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Frustration ratings by build</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="fu">boxplot</span>(frustration_1to7 <span class="sc">~</span> build, <span class="at">data =</span> df,</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>        <span class="at">col =</span> <span class="fu">c</span>(<span class="st">"coral"</span>, <span class="st">"skyblue"</span>),</span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>        <span class="at">main =</span> <span class="st">"Player Frustration by Build"</span>,</span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>        <span class="at">xlab =</span> <span class="st">"Build Version"</span>,</span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>        <span class="at">ylab =</span> <span class="st">"Frustration Rating (1-7)"</span>,</span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>        <span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">7</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Lab_Report_Sample_files/figure-html/fig3-frustration-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p><strong>Figure 3</strong> shows that Build B successfully reduced player frustration. The median frustration rating decreased from approximately 4 to 3 on the 7-point scale, with Build B showing a tighter distribution around lower frustration levels. This reduction is particularly important given the very strong negative correlation between frustration and recommendation (r = -0.87), indicating that minimizing frustration is critical for player satisfaction.</p>
+</section>
+</section>
+<section id="build-comparison" class="level3" data-number="5.5">
+<h3 data-number="5.5" class="anchored" data-anchor-id="build-comparison"><span class="header-section-number">5.5</span> Build Comparison</h3>
+<p><strong>What we compared:</strong> Task 1 completion rates between Build A (original tutorial) and Build B (enhanced waypoints and UI hints).</p>
+<p><strong>What we found:</strong> Build B showed a 35 percentage point increase in completion rate (23% to 58%), with a 95% confidence interval of [35%, 72%].</p>
+<blockquote class="blockquote">
+<p>Note the use of inline R code chunks to update the CI above.</p>
+</blockquote>
+<p><strong>Statistical significance:</strong> The confidence interval excludes zero, indicating this difference is statistically significant and unlikely due to sampling variation alone.</p>
+<p><strong>Practical significance:</strong> This represents more than doubling the completion rate. For a tutorial designed to introduce core navigation mechanics, this improvement is substantial and addresses a critical usability barrier. Given that Build B particularly helps beginners (+69%), this change effectively removes a major obstacle to player retention.</p>
+</section>
+<section id="correlation-analysis" class="level3" data-number="5.6">
+<h3 data-number="5.6" class="anchored" data-anchor-id="correlation-analysis"><span class="header-section-number">5.6</span> Correlation Analysis</h3>
+<div class="cell">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Select key numeric variables</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>cor_vars <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"deaths_total"</span>, <span class="st">"ui_clarity_1to7"</span>, <span class="st">"navigation_1to7"</span>, </span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>              <span class="st">"combat_fun_1to7"</span>, <span class="st">"frustration_1to7"</span>, <span class="st">"recommend_0to10"</span>)</span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate correlation matrix</span></span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>cor_data <span class="ot">&lt;-</span> df[, cor_vars]</span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>cor_matrix <span class="ot">&lt;-</span> <span class="fu">cor</span>(cor_data, <span class="at">use =</span> <span class="st">"complete.obs"</span>)</span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"</span><span class="sc">\n</span><span class="st">=== Table 2: Correlation Matrix ===</span><span class="sc">\n\n</span><span class="st">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+=== Table 2: Correlation Matrix ===</code></pre>
+</div>
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">round</span>(cor_matrix, <span class="dv">2</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>                 deaths_total ui_clarity_1to7 navigation_1to7 combat_fun_1to7
+deaths_total             1.00           -0.47           -0.36            0.19
+ui_clarity_1to7         -0.47            1.00            0.52           -0.24
+navigation_1to7         -0.36            0.52            1.00           -0.08
+combat_fun_1to7          0.19           -0.24           -0.08            1.00
+frustration_1to7         0.66           -0.59           -0.49            0.10
+recommend_0to10         -0.53            0.71            0.60           -0.08
+                 frustration_1to7 recommend_0to10
+deaths_total                 0.66           -0.53
+ui_clarity_1to7             -0.59            0.71
+navigation_1to7             -0.49            0.60
+combat_fun_1to7              0.10           -0.08
+frustration_1to7             1.00           -0.87
+recommend_0to10             -0.87            1.00</code></pre>
+</div>
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create readable labels</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>clean_labels <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"Deaths"</span>, <span class="st">"UI Clarity"</span>, <span class="st">"Navigation"</span>, </span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>                  <span class="st">"Combat Fun"</span>, <span class="st">"Frustration"</span>, <span class="st">"Recommendation"</span>)</span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Rename matrix rows and columns</span></span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a><span class="fu">rownames</span>(cor_matrix) <span class="ot">&lt;-</span> clean_labels</span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(cor_matrix) <span class="ot">&lt;-</span> clean_labels</span>
+<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Create color palette: green (positive) to red (negative)</span></span>
+<span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a>col_palette <span class="ot">&lt;-</span> <span class="fu">colorRampPalette</span>(<span class="fu">c</span>(<span class="st">"#D1495B"</span>, <span class="st">"white"</span>, <span class="st">"#3A7D44"</span>))(<span class="dv">100</span>)</span>
+<span id="cb21-11"><a href="#cb21-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-12"><a href="#cb21-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Set margins to accommodate labels</span></span>
+<span id="cb21-13"><a href="#cb21-13" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mar =</span> <span class="fu">c</span>(<span class="dv">8</span>, <span class="dv">8</span>, <span class="dv">3</span>, <span class="dv">2</span>))</span>
+<span id="cb21-14"><a href="#cb21-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-15"><a href="#cb21-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Create heatmap</span></span>
+<span id="cb21-16"><a href="#cb21-16" aria-hidden="true" tabindex="-1"></a><span class="fu">image</span>(<span class="dv">1</span><span class="sc">:</span><span class="fu">ncol</span>(cor_matrix), <span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(cor_matrix), <span class="fu">t</span>(cor_matrix),</span>
+<span id="cb21-17"><a href="#cb21-17" aria-hidden="true" tabindex="-1"></a>      <span class="at">col =</span> col_palette,</span>
+<span id="cb21-18"><a href="#cb21-18" aria-hidden="true" tabindex="-1"></a>      <span class="at">axes =</span> <span class="cn">FALSE</span>, <span class="at">xlab =</span> <span class="st">""</span>, <span class="at">ylab =</span> <span class="st">""</span>,</span>
+<span id="cb21-19"><a href="#cb21-19" aria-hidden="true" tabindex="-1"></a>      <span class="at">main =</span> <span class="st">"Correlation Matrix"</span>,</span>
+<span id="cb21-20"><a href="#cb21-20" aria-hidden="true" tabindex="-1"></a>      <span class="at">zlim =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">1</span>, <span class="dv">1</span>))</span>
+<span id="cb21-21"><a href="#cb21-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-22"><a href="#cb21-22" aria-hidden="true" tabindex="-1"></a><span class="co"># Add axes with clean labels</span></span>
+<span id="cb21-23"><a href="#cb21-23" aria-hidden="true" tabindex="-1"></a><span class="fu">axis</span>(<span class="dv">1</span>, <span class="at">at =</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">ncol</span>(cor_matrix), <span class="at">labels =</span> <span class="fu">colnames</span>(cor_matrix), </span>
+<span id="cb21-24"><a href="#cb21-24" aria-hidden="true" tabindex="-1"></a>     <span class="at">las =</span> <span class="dv">2</span>, <span class="at">cex.axis =</span> <span class="fl">0.85</span>)</span>
+<span id="cb21-25"><a href="#cb21-25" aria-hidden="true" tabindex="-1"></a><span class="fu">axis</span>(<span class="dv">2</span>, <span class="at">at =</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(cor_matrix), <span class="at">labels =</span> <span class="fu">rownames</span>(cor_matrix), </span>
+<span id="cb21-26"><a href="#cb21-26" aria-hidden="true" tabindex="-1"></a>     <span class="at">las =</span> <span class="dv">1</span>, <span class="at">cex.axis =</span> <span class="fl">0.85</span>)</span>
+<span id="cb21-27"><a href="#cb21-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-28"><a href="#cb21-28" aria-hidden="true" tabindex="-1"></a><span class="co"># Add correlation values in white</span></span>
+<span id="cb21-29"><a href="#cb21-29" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(cor_matrix)) {</span>
+<span id="cb21-30"><a href="#cb21-30" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (j <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">ncol</span>(cor_matrix)) {</span>
+<span id="cb21-31"><a href="#cb21-31" aria-hidden="true" tabindex="-1"></a>    <span class="fu">text</span>(j, i, <span class="fu">sprintf</span>(<span class="st">"%.2f"</span>, cor_matrix[i, j]), </span>
+<span id="cb21-32"><a href="#cb21-32" aria-hidden="true" tabindex="-1"></a>         <span class="at">col =</span> <span class="st">"white"</span>, <span class="at">cex =</span> <span class="fl">0.85</span>, <span class="at">font =</span> <span class="dv">2</span>)</span>
+<span id="cb21-33"><a href="#cb21-33" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb21-34"><a href="#cb21-34" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Lab_Report_Sample_files/figure-html/correlation-matrix-1.png" class="img-fluid figure-img" width="768"></p>
+</figure>
+</div>
+</div>
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>r_frust_rec <span class="ot">&lt;-</span> <span class="fu">round</span>(<span class="fu">cor</span>(df<span class="sc">$</span>frustration_1to7, df<span class="sc">$</span>recommend_0to10, <span class="at">use =</span> <span class="st">"complete.obs"</span>), <span class="dv">2</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+<p><strong>Top 3 Correlations:</strong></p>
+<blockquote class="blockquote">
+<p>Note the use of in-line R code below for the first correlation value.</p>
+</blockquote>
+<ol type="1">
+<li><p><strong>Frustration vs Recommendation (r = -0.86)</strong>: Very strong negative correlation indicates that player frustration is the primary predictor of willingness to recommend. Players who experienced high frustration (e.g., getting lost, dying repeatedly) were substantially less likely to recommend the game, regardless of build.</p></li>
+<li><p><strong>UI Clarity vs Recommendation (r = +0.71)</strong>: Players who found the UI clear and helpful were much more likely to recommend the game. This validates our focus on improving tutorial clarity as a key driver of player satisfaction.</p></li>
+<li><p><strong>Deaths vs Frustration (r = +0.66)</strong>: Significant positive correlation shows that death frequency is a major contributor to player frustration. This relationship highlights the importance of balanced difficulty.</p></li>
+</ol>
+<p><strong>Notable moderate correlations:</strong></p>
+<ul>
+<li><strong>Deaths vs Recommendation (r = -0.53)</strong>: Death frequency negatively impacts recommendation, likely mediated through increased frustration.</li>
+<li><strong>UI Clarity vs Frustration (r = -0.59)</strong>: Clear UI elements reduce frustration, confirming that usability improvements directly enhance player experience.</li>
+<li><strong>UI Clarity vs Navigation (r = +0.52)</strong>: Moderate positive correlation confirms that clear UI elements (waypoints, objective markers) enable better navigation.</li>
+</ul>
+<p><strong>Weak correlation of interest:</strong></p>
+<blockquote class="blockquote">
+<p>From the table above what two variables have the weakest correlation?</p>
+</blockquote>
+<ul>
+<li><strong>X vs Y (r = -0.08)</strong>: X enjoyment shows essentially no correlation with overall Y. This suggests that while X is important, it is far less critical than navigation clarity and reduced frustration for overall player satisfaction during the tutorial phase.</li>
+</ul>
+<hr>
+</section>
+</section>
+<section id="discussion" class="level2" data-number="6">
+<h2 data-number="6" class="anchored" data-anchor-id="discussion"><span class="header-section-number">6</span> Discussion</h2>
+<section id="interpretation-of-findings" class="level3" data-number="6.1">
+<h3 data-number="6.1" class="anchored" data-anchor-id="interpretation-of-findings"><span class="header-section-number">6.1</span> Interpretation of Findings</h3>
+<p>Our hypothesis that Build B would improve Task 1 completion was strongly supported. The 35 percentage point increase represents a practically significant improvement that addresses the primary usability concern identified in alpha testing. Beyond completion rates, Build B improved nearly every measured outcome: lower deaths, reduced frustration, higher UI clarity ratings, and greater likelihood to recommend.</p>
+<p>The most theoretically interesting finding is the <strong>interaction effect between build and experience level</strong>. Build B’s enhancements disproportionately benefited beginners, closing the gap between novice and experienced players. This “skill curve flattening” effect is precisely what effective tutorial design should achieve: providing scaffolding for those who need it while remaining unobtrusive for experienced players who can navigate independently.</p>
+</section>
+<section id="key-insights" class="level3" data-number="6.2">
+<h3 data-number="6.2" class="anchored" data-anchor-id="key-insights"><span class="header-section-number">6.2</span> Key Insights</h3>
+<ol type="1">
+<li><p><strong>Tutorial improvements drive retention</strong>: The strong correlation between UI clarity and recommendation (r = 0.71) suggests that poor early-game experience compounds into negative overall perception. Conversely, reducing early frustration through better tutorials improves overall satisfaction.</p></li>
+<li><p><strong>Beginners are most sensitive to tutorial quality</strong>: The interaction effect shows that tutorial improvements particularly matter for player acquisition and retention among new audiences. Build B helps beginners substantially more than experienced players.</p></li>
+<li><p><strong>Frustration is the key metric</strong>: The very strong negative correlation between frustration and recommendation (r = -0.86) indicates that minimizing frustration is more important than maximizing any single positive feature. Deaths strongly correlate with frustration (r = 0.71), highlighting the importance of fair difficulty.</p></li>
+</ol>
+</section>
+<section id="limitations" class="level3" data-number="6.3">
+<h3 data-number="6.3" class="anchored" data-anchor-id="limitations"><span class="header-section-number">6.3</span> Limitations</h3>
+<ol type="1">
+<li><p><strong>Sample size for completed Build A tasks</strong>: Only 9 participants completed Task 1 in Build A, yielding a wide confidence interval for completion time comparisons. While completion rate differences are clear, efficiency comparisons among successful completions are underpowered.</p></li>
+<li><p><strong>Platform confounding</strong>: Console players averaged 1.2 more deaths than PC players. This could reflect control scheme differences, selection bias (e.g., less experienced players on Console), or both. We cannot isolate platform effects from player skill with this study design.</p></li>
+<li><p><strong>Selection bias</strong>: All participants were recruited from our college gaming club. This sample likely overrepresents younger, more experienced gamers compared to the general player population. Effects on true beginners or older players may differ.</p></li>
+<li><p><strong>Single-session design</strong>: We measured immediate experience only. Long-term effects on skill development and engagement require longitudinal testing.</p></li>
+</ol>
+</section>
+<section id="comparison-to-previous-testing" class="level3" data-number="6.4">
+<h3 data-number="6.4" class="anchored" data-anchor-id="comparison-to-previous-testing"><span class="header-section-number">6.4</span> Comparison to Previous Testing</h3>
+<p>These results validate our design rationale from alpha testing, which identified navigation as the primary barrier to early engagement. The revised waypoint system successfully addresses player feedback that “I didn’t know where to go” was the most common reason for abandoning the game within the first hour.</p>
+<hr>
+</section>
+</section>
+<section id="recommendations" class="level2" data-number="7">
+<h2 data-number="7" class="anchored" data-anchor-id="recommendations"><span class="header-section-number">7</span> Recommendations</h2>
+<section id="high-priority-implement-build-bs-tutorial-system-for-final-release" class="level3" data-number="7.1">
+<h3 data-number="7.1" class="anchored" data-anchor-id="high-priority-implement-build-bs-tutorial-system-for-final-release"><span class="header-section-number">7.1</span> HIGH PRIORITY: Implement Build B’s Tutorial System for Final Release</h3>
+<p><strong>Evidence:</strong> Build B increased Task 1 completion by 35 percentage points (95% CI: [35%, 72%]), improved UI clarity by 2.4 points, and reduced player deaths by 1.6 on average. Beginner players showed a 69% gain in completion rates.</p>
+<p><strong>Expected Impact:</strong> Dramatically improved new player onboarding and retention. Based on our alpha telemetry, 40% of players abandoned the game before completing the first quest objective. Build B’s improvements should reduce this early drop-off substantially.</p>
+<p><strong>Implementation:</strong> The waypoint and contextual hint systems are already implemented in Build B. Migration to final release requires:</p>
+<ul>
+<li>QA testing across all quest types</li>
+<li>Localization of hint text for 8 languages</li>
+<li>Performance optimization for Console (see Priority 2)</li>
+</ul>
+<p><strong>Timeline:</strong> 4-6 weeks for full implementation and testing.</p>
+</section>
+<section id="medium-priority-investigate-console-platform-performance" class="level3" data-number="7.2">
+<h3 data-number="7.2" class="anchored" data-anchor-id="medium-priority-investigate-console-platform-performance"><span class="header-section-number">7.2</span> MEDIUM PRIORITY: Investigate Console Platform Performance</h3>
+<p><strong>Evidence:</strong> Console players averaged 3.8 deaths compared to 2.6 on PC (difference of +1.2 deaths). While this could reflect player skill differences, qualitative feedback included two Console-specific comments about “clunky controls.”</p>
+<p><strong>Expected Impact:</strong> If control scheme is the issue, optimizing Console controls could further improve the Build B gains observed. If player skill is the confound, this validates our design decision that scaffolding (waypoints/hints) compensates for skill differences.</p>
+<blockquote class="blockquote">
+<p>A confound (or confounding variable) in data analytics is an unmeasured third variable that influences both the independent variable (cause) and dependent variable (effect)</p>
+</blockquote>
+<p><strong>Implementation:</strong> Conduct targeted Console-specific playtesting with experienced players on both platforms. Test whether control remapping or aim assist adjustments reduce death counts without changing core difficulty.</p>
+<p><strong>Timeline:</strong> 2-3 weeks for diagnostic testing.</p>
+</section>
+<section id="low-priority-add-optional-challenge-mode-for-experienced-players" class="level3" data-number="7.3">
+<h3 data-number="7.3" class="anchored" data-anchor-id="low-priority-add-optional-challenge-mode-for-experienced-players"><span class="header-section-number">7.3</span> LOW PRIORITY: Add Optional “Challenge Mode” for Experienced Players</h3>
+<p><strong>Evidence:</strong> Build B’s combat fun rating was slightly lower than Build A (5.5 vs 5.9), though the difference was small. Some qualitative feedback from experienced players indicated the enhanced guidance made the game “too easy.”</p>
+<p><strong>Expected Impact:</strong> Providing an optional mode that reduces or disables tutorial hints could preserve challenge for veterans while maintaining accessibility for beginners. This addresses the slight trade-off between usability and difficulty.</p>
+<p><strong>Implementation:</strong> Add a toggle in settings: “Tutorial Assistance: Full / Minimal / Off.” This preserves Build B’s benefits as the default while offering customization.</p>
+<p><strong>Timeline:</strong> 1-2 weeks for implementation; minimal risk.</p>
+</section>
+<section id="action-plan-next-steps" class="level3" data-number="7.4">
+<h3 data-number="7.4" class="anchored" data-anchor-id="action-plan-next-steps"><span class="header-section-number">7.4</span> Action Plan &amp; Next Steps</h3>
+<ol type="1">
+<li><strong>Immediate (Week 12-13)</strong>: Finalize Build B integration into main branch, begin QA testing</li>
+<li><strong>Short-term (Week 14-16)</strong>: Conduct Console-specific diagnostic testing</li>
+<li><strong>Medium-term (Week 17-20)</strong>: Implement challenge mode toggle, localization, and polish</li>
+<li><strong>Long-term (Post-launch)</strong>: Monitor telemetry for Task 1 completion rates in live environment; iterate if needed</li>
+</ol>
+<p>We recommend a follow-up study post-launch to validate these improvements with a larger, more diverse player sample.</p>
+<hr>
+</section>
+</section>
+<section id="conclusion" class="level2" data-number="8">
+<h2 data-number="8" class="anchored" data-anchor-id="conclusion"><span class="header-section-number">8</span> Conclusion</h2>
+<section id="summary-of-findings" class="level3" data-number="8.1">
+<h3 data-number="8.1" class="anchored" data-anchor-id="summary-of-findings"><span class="header-section-number">8.1</span> Summary of Findings</h3>
+<p>Build B’s enhanced waypoint and tutorial system represents a clear, evidence-based improvement over the original Build A. Task 1 completion rates more than doubled, UI clarity improved dramatically, and player frustration decreased. Most importantly, these improvements particularly benefited beginner players, demonstrating that good tutorial design can effectively reduce skill barriers without compromising experienced player enjoyment.</p>
+</section>
+<section id="value-of-findings" class="level3" data-number="8.2">
+<h3 data-number="8.2" class="anchored" data-anchor-id="value-of-findings"><span class="header-section-number">8.2</span> Value of Findings</h3>
+<p>These results provide strong quantitative validation for our design direction. Rather than relying on anecdotal feedback or designer intuition, we now have statistical evidence that our tutorial revisions achieve their intended goals. The interaction effect finding (Build B helps beginners most) is particularly valuable, as it demonstrates we can improve accessibility without “dumbing down” the experience for our core audience.</p>
+</section>
+<section id="future-considerations" class="level3" data-number="8.3">
+<h3 data-number="8.3" class="anchored" data-anchor-id="future-considerations"><span class="header-section-number">8.3</span> Future Considerations</h3>
+<p>As we approach final release, we should:</p>
+<ul>
+<li>Monitor Task 1 completion rates in live telemetry to confirm lab findings generalize</li>
+<li>Investigate whether the tutorial improvements affect long-term engagement (30-day retention)</li>
+<li>Apply similar waypoint/hint design patterns to later quests that currently show high abandonment</li>
+</ul>
+<p>The success of Build B’s tutorial redesign suggests that investing in clarity and player guidance - rather than assuming players will “figure it out”- pays substantial dividends in player satisfaction and retention.</p>
+<hr>
+</section>
+</section>
+<section id="references" class="level2" data-number="9">
+<h2 data-number="9" class="anchored" data-anchor-id="references"><span class="header-section-number">9</span> References</h2>
+<ul>
+<li>Schell, J. (2019). <em>The Art of Game Design: A Book of Lenses</em> (3rd ed.). CRC Press.</li>
+</ul>
+<hr>
+</section>
+<section id="appendices" class="level2" data-number="10">
+<h2 data-number="10" class="anchored" data-anchor-id="appendices"><span class="header-section-number">10</span> Appendices</h2>
+<section id="appendix-a-raw-data" class="level3" data-number="10.1">
+<h3 data-number="10.1" class="anchored" data-anchor-id="appendix-a-raw-data"><span class="header-section-number">10.1</span> Appendix A: Raw Data</h3>
+<p>Data available at:</p>
+<ul>
+<li><a href="../data/open_world_user_testing_survey_data.csv">open_world_user_testing_survey_data.csv</a></li>
+</ul>
+</section>
+<section id="appendix-b-survey-instrument" class="level3" data-number="10.2">
+<h3 data-number="10.2" class="anchored" data-anchor-id="appendix-b-survey-instrument"><span class="header-section-number">10.2</span> Appendix B: Survey Instrument</h3>
+<p>See attached:</p>
+<ul>
+<li><a href="../data/open_world_user_testing_survey.md">open_world_user_testing_survey.md</a></li>
+</ul>
+</section>
+<section id="appendix-c-statistical-methods" class="level3" data-number="10.3">
+<h3 data-number="10.3" class="anchored" data-anchor-id="appendix-c-statistical-methods"><span class="header-section-number">10.3</span> Appendix C: Statistical Methods</h3>
+<p><strong>Bootstrap CI Calculation:</strong> We used percentile bootstrap with 5000 resamples to estimate the 95% confidence interval for the difference in proportions, as this method does not assume normality and is appropriate for binary outcomes.</p>
+<p><strong>Correlation:</strong> Pearson’s correlation coefficient was used for all pairs of continuous/ordinal variables, calculated on complete cases only.</p>
+</section>
+</section>
+
+</main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

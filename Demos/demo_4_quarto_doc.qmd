@@ -20,6 +20,62 @@ survey_data_alpha <- data.frame(deaths, frustration, ui_clarity, recommendation,
               completed_buildA,completed_buildB)
 
 summary(survey_data_alpha)
+
 ```
 
-A survey of participants (N=`r median(deaths)`) was conducted.
+```{r}
+set.seed(123)
+sub_sample_rec <- sample(recommendation, 5, replace=TRUE)
+sub_sample_rec
+
+median_sub_sample <- median(sample(recommendation, 5, replace=TRUE))
+median_sub_sample
+
+ci_low <- quantile(recommendation, 0.025);
+ci_low
+
+ci_hi <- quantile(recommendation, 0.975);
+ci_hi
+
+```
+
+The sample (V=`r median_sub_sample`) was taken and...
+
+
+```{r}
+source("../common/bootstrap_ci_functions.R")
+result_ci <- bootstrap_ci_mean(recommendation, n_boot=2000, conf_level=0.95)
+result_ci
+
+result_rate_ci <- bootstrap_ci_rate_diff(completed_buildA, completed_buildB,
+                                         n_boot = 5000, conf_level=0.95)
+
+result_rate_ci
+
+
+
+
+
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
