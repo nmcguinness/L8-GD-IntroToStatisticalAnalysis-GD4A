@@ -42,7 +42,7 @@ Your Results must include:
 - **At least one 95% CI:** reported as a sentence in gameplay terms.
 - **Figures:** 2–4 plots that support your story (distribution, group comparison, and one plot that encodes an extra dimension using colour/fill or facets).
 - **Comparison paragraph (if comparing builds/groups):** follow the 4-sentence template in Notes 02.
-- **Optional supporting outputs:** a small correlation matrix and one simple regression, only if they are clearly relevant to your objectives.
+- **Supporting outputs:** a small correlation matrix clearly relevant to your objectives.
 
 ### Where each output goes in the report
 
@@ -54,8 +54,6 @@ Your Results must include:
 | Figures 1–4 | Results |
 | Build/group comparison paragraph | Results (and Discussion if needed) |
 | Correlation matrix (small) | Results or Appendix |
-| Regression plot + slope sentence | Results (and Discussion if needed) |
-
 
 ## The dataset you will analyse
 
