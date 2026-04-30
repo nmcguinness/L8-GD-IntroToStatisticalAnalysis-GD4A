@@ -99,45 +99,71 @@ A t-test should support your argument. It should not replace your visualisation,
 Use the flowchart below before you run a t-test. The most important question is whether your data can genuinely match each player's Version A result with the same player's Version B result.
 
 ```mermaid
+%%{init: {
+  "theme": "base",
+  "themeVariables": {
+    "primaryColor": "#f3f0eb",
+    "primaryTextColor": "#2f2a25",
+    "primaryBorderColor": "#b8afa3",
+    "lineColor": "#7c746b",
+    "fontFamily": "Arial"
+  }
+}}%%
 flowchart TD
   start["Start"] --> twoGroups{"Two versions?"}
 
   twoGroups -- "No" --> notTTest["Not a t-test"]
-  twoGroups -- "Yes" --> numeric{"Numeric outcome?"}
+  twoGroups -- "Yes" --> outcome{"Outcome type?"}
 
-  numeric -- "No: yes/no" --> binary["Compare rates"]
-  numeric -- "No: rating/rank" --> ordinal["Use caution"]
-  numeric -- "Yes" --> samePlayers{"Same players?"}
+  outcome -- "Numeric" --> samePlayers{"Same players?"}
+  outcome -- "Yes/no" --> rates["Compare rates"]
+  outcome -- "Rating" --> caution["Use caution"]
 
-  samePlayers -- "No" --> independent["Welch t-test"]
-  samePlayers -- "Yes" --> pairedIDs{"Rows matched?"}
+  caution --> samePlayers
 
-  pairedIDs -- "Yes" --> paired["Paired t-test"]
-  pairedIDs -- "No" --> unpairedFallback["Welch t-test"]
+  samePlayers -- "No" --> welch["Welch t-test"]
+  samePlayers -- "Yes" --> paired{"Rows matched?"}
 
-  independent --> checkAssumptions["Check data"]
-  paired --> checkAssumptions
-  unpairedFallback --> lostPairs["State limitation"]
-  lostPairs --> checkAssumptions
+  paired -- "Yes" --> pairedTest["Paired t-test"]
+  paired -- "No" --> fallback["Welch + limitation"]
 
-  checkAssumptions --> report["Report results"]
+  welch --> check["Check data"]
+  pairedTest --> check
+  fallback --> check
+  rates --> check
+
+  check --> report["Report results"]
+
+  classDef decision fill:#f3f0eb,stroke:#8b8178,color:#2f2a25;
+  classDef test fill:#e8f0e3,stroke:#6d8064,color:#1f2a1f;
+  classDef caution fill:#fff3d6,stroke:#b08a2e,color:#3a2a00;
+  classDef stop fill:#f1dddd,stroke:#9b5c5c,color:#2f1f1f;
+
+  class twoGroups,outcome,samePlayers,paired,check decision;
+  class welch,pairedTest test;
+  class caution,fallback,rates caution;
+  class notTTest stop;
 ```
 
 Use the short labels in the chart as follows:
 
 | Chart label | Meaning |
 | :- | :- |
-| **Two versions?** | A t-test is for comparing two groups or conditions. If you have more than two, do not use a t-test as your main method. |
-| **Numeric outcome?** | A t-test compares means, so the dependent variable should be numeric, such as time, score, distance, deaths, or hints used. |
-| **Compare rates** | If the outcome is completed/not completed, compare completion rates instead of using a t-test as the main test. |
-| **Use caution** | If the outcome is a 1-5 or 1-7 rating, you may summarise and compare cautiously, but say that the result is indicative. |
-| **Same players?** | Decide whether the same participants tested both A and B. |
-| **Rows matched?** | Decide whether each player's A result can be matched with the same player's B result using an anonymous participant ID. |
-| **Welch t-test** | Use when A and B are independent groups, or when the pairing information has been lost. |
-| **Paired t-test** | Use only when the same players tested both versions and the rows can be matched. |
-| **State limitation** | Say that the same players tested both versions but participant IDs were not recorded, so the paired analysis could not be used. |
-| **Check data** | Inspect plots, missing values, outliers, sample size, and confounds before interpreting the p-value. |
-| **Report results** | Report group means, mean difference, 95% CI, p-value, effect size, plot, and gameplay interpretation. |
+| **Two versions?** | A t-test is for comparing two groups or conditions. If you have more than two versions or conditions, do not use a t-test as your main method. |
+| **Outcome type?** | Decide what kind of dependent variable you measured. The test choice depends on whether the outcome is a numeric measure, a yes/no outcome, or a rating/rank. |
+| **Numeric measure** | Use this path for measured numeric outcomes such as completion time, score, distance travelled, deaths, hints used, or number of missed interactions. |
+| **Yes/no** | Use this path for binary outcomes such as completed/not completed, crashed/did not crash, or found/did not find the objective. These are usually better reported as rates or percentages. |
+| **Rating/rank** | Use this path for 1-5, 1-7, or 0-10 survey ratings. These can sometimes be compared cautiously, but they should be interpreted as indicative rather than exact. |
+| **Compare rates** | If the outcome is yes/no, compare completion rates or percentages instead of using a t-test as the main test. |
+| **Use caution** | If the outcome is a rating scale, you may continue with the t-test workflow only if you clearly state that the scale is ordinal and the result is approximate/indicative. |
+| **Same players?** | Decide whether the same participants tested both Version A and Version B. |
+| **Rows matched?** | Decide whether each player’s Version A result can be matched with the same player’s Version B result using an anonymous participant ID. |
+| **Welch t-test** | Use when A and B were tested by different players, or when the pairing information has been lost. |
+| **Paired t-test** | Use only when the same players tested both versions and each player’s A and B results can be matched. |
+| **Welch + limitation** | Use when the same players tested both versions but participant IDs were not recorded. State clearly that a paired t-test could not be used. |
+| **Not a t-test** | Use another analysis approach when there are not exactly two versions or conditions. |
+| **Check data** | Inspect sample size, plots, missing values, outliers, skew, and likely confounds before interpreting the p-value. |
+| **Report results** | Report group means, mean difference, 95% confidence interval, p-value, effect size, plot, and gameplay interpretation. |
 
 ## A practical game example
 
@@ -218,6 +244,13 @@ The main example below uses:
 - `build` as the independent variable;
 - `completion_time_sec` as the dependent variable.
 
+
+The practice CSV file used in these notes is available in the repository's `data` folder:
+
+> `data/stage4_ab_test_data.csv`
+
+Repository: <https://github.com/nmcguinness/L8-GD-IntroToStatisticalAnalysis-GD4A/tree/main>
+
 ## Create a small practice dataset
 
 If you are working with your own cleaned spreadsheet, you can skip this short setup and use your own data frame.
@@ -256,6 +289,26 @@ print(table(test_df$build))
 ## Step 1: Produce a summary table
 
 Before running a t-test, summarise the data.
+
+
+<details>
+<summary><strong>Source: load the practice CSV from the data folder</strong></summary>
+
+```r
+# Load the practice CSV file from the data folder.
+# This uses built-in R only.
+test_df <- read.csv("data/stage4_ab_test_data.csv")
+
+# Make sure the groups are ordered as A then B.
+test_df$build <- factor(test_df$build, levels = c("A", "B"))
+
+# Quick checks.
+print(head(test_df))
+print(table(test_df$build))
+str(test_df)
+```
+
+</details>
 
 ```r
 summary_tbl <- aggregate(
