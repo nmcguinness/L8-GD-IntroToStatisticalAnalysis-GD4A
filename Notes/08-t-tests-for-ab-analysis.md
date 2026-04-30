@@ -1,5 +1,5 @@
 ---
-title: "Student's t-test for A/B Analysis"
+title: "T-test for A/B Analysis"
 subtitle: "Testing Whether a Game Design Change Had a Statistically Significant Effect"
 programme: "BSc (Hons) in Computing in Games Development"
 stage: 4
