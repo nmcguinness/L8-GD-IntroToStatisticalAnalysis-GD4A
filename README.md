@@ -16,6 +16,7 @@ This repository contains samples code used to learn core R (and useful packages 
 | 05    | Data Cleaning with the 4 Verbs          | Cleaning playtest datasets with `select()`, `filter()`, `mutate()`, `summarise()`, and producing report-ready tables. | [05-data-cleaning](/Notes/05-data-cleaning.md)                                                     |                              |
 | 06    | Practical Analysis Tools and Reporting  | Practical workflow: turning cleaned data into tables/plots and writing clear commentary for a lab/playtesting report. | [06-practical-analysis-tools-and-reporting](/Notes/06-practical-analysis-tools-and-reporting.md)   |                              |
 | 07    | Survey Design                           | Writing playtesting survey questions to maximise insight and support statistical analysis in the lab report.           | [07-survey-design](/Notes/07-survey-design.md) |        
+| 08    | Student’s t-test for A/B Analysis       | Using Student’s t-test to compare two builds or conditions, interpret p-values, report effect size, and write cautious A/B conclusions. | [08-students-t-test-ab-analysis](/Notes/08-students-t-test-ab-analysis.md) |
 
 
 ## Lab Report
